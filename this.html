@@ -620,100 +620,38 @@
                     </div>
                 </div>
 
-                <!-- TODO: SERVICOSDIGITAIS - Painel da aba Serviços digitais com tabela horizontal -->
+                <!-- TODO: SERVICOSDIGITAIS - Painel da aba Serviços digitais com dropdown seletor -->
                 <div id="tab-servicos-digitais" class="tab-panel">
                     <!-- TODO: SERVICOSDIGITAIS - Nota explicativa sobre serviços digitais -->
-                    <div class="note" style="margin-bottom:12px;">Serviços digitais: cada coluna representa um serviço com suas configurações específicas.</div>
-                    <!-- TODO: SERVICOSDIGITAIS - Card da tabela horizontal -->
-                    <div class="card" style="margin:0">
-                        <!-- TODO: SERVICOSDIGITAIS - Fieldset único -->
+                    <div class="note" style="margin-bottom:12px;">Selecione um serviço na dropdown abaixo para adicionar suas configurações.</div>
+                    
+                    <!-- TODO: SERVICOSDIGITAIS - Card com dropdown de seleção -->
+                    <div class="card" style="margin:0; margin-bottom:16px;">
                         <fieldset>
-                            <!-- TODO: SERVICOSDIGITAIS - Cabeçalho da secção -->
-                            <legend>Serviços Digitais</legend>
-                            <!-- TODO: SERVICOSDIGITAIS - Tabela horizontal (cada coluna = um serviço) -->
-                            <table class="table-compact" style="width:100%;">
-                                <!-- TODO: SERVICOSDIGITAIS - Cabeçalho com nome de cada serviço -->
-                                <thead>
-                                    <tr>
-                                        <th class="col-email">Email</th>
-                                        <th class="col-servico col-sms" data-servico="sms">SMS</th>
-                                        <th class="col-servico col-emailsreg" data-servico="emailsreg">Emails registados</th>
-                                        <th class="col-servico col-assinaturas" data-servico="assinaturas">Assinaturas de contratos</th>
-                                        <th class="col-servico col-devolucao" data-servico="devolucao">Devolução PDFs</th>
-                                        <th class="col-servico col-pdfonthefly" data-servico="pdfonthefly">PDFonTheFly</th>
-                                        <th class="col-servico col-assdigital" data-servico="assdigital">Assinatura digital qualificada</th>
-                                        <th class="col-servico col-edi" data-servico="edi">EDI</th>
-                                        <th class="col-servico col-certificacao" data-servico="certificacao">Certificação de contactos</th>
-                                        <th style="width:80px;"></th>
-                                    </tr>
-                                </thead>
-                                <!-- TODO: SERVICOSDIGITAIS - Corpo da tabela com dropdowns e inputs inline -->
-                                <tbody id="servicosDigitaisBody">
-                                    <tr>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Email (From email + From name) -->
-                                        <td style="vertical-align:top;" class="col-email">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <input type="text" placeholder="From email" style="font-size:12px; width:155px;">
-                                                <input type="text" placeholder="From name" style="font-size:12px; width:155px;">
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna SMS (Provider) -->
-                                        <td style="vertical-align:top;" class="col-servico col-sms" data-servico="sms">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:120px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Emails registados (Provider) -->
-                                        <td style="vertical-align:top;" class="col-servico col-emailsreg" data-servico="emailsreg">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:135px;"><option>Mailcooms</option><option>Outro</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Assinaturas de contratos (Provider) -->
-                                        <td style="vertical-align:top;" class="col-servico col-assinaturas" data-servico="assinaturas">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:155px;"><option>Mailcooms</option><option>Outro</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Devolução PDFs (Método) -->
-                                        <td style="vertical-align:top;" class="col-servico col-devolucao" data-servico="devolucao">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:125px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna PDFonTheFly (switch inline Sim/Não) -->
-                                        <td style="vertical-align:top;" class="col-servico col-pdfonthefly" data-servico="pdfonthefly">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Assinatura digital qualificada (Provider) -->
-                                        <td style="vertical-align:top;" class="col-servico col-assdigital" data-servico="assdigital">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:165px;"><option>DigitalSign</option><option>Outro</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna EDI (Provider) -->
-                                        <td style="vertical-align:top;" class="col-servico col-edi" data-servico="edi">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:100px;"><option>Cegid</option><option>Outro</option></select>
-                                            </div>
-                                        </td>
-                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Certificação de contactos (Canal) -->
-                                        <td style="vertical-align:top;" class="col-servico col-certificacao" data-servico="certificacao">
-                                            <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px; width:155px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>
-                                            </div>
-                                        </td> </tr>
-                                </tbody>
-                            </table>
-                            <!-- TODO: SERVICOSDIGITAIS - Botões para adicionar e remover serviços -->
-                            <div class="actions-row">
-                                <button class="btn btn-primary" type="button" onclick="addServicoColumn()">+ Adicionar Serviço</button>
-                                <button class="btn btn-danger" type="button" onclick="removeServicoColumn()">Remover Serviço</button>
+                            <legend>Adicionar Serviço Digital</legend>
+                            <div style="display:flex; gap:10px; align-items:flex-end;">
+                                <div style="flex:1; max-width:300px;">
+                                    <label>Selecione o serviço</label>
+                                    <select id="selectServicoDigital" style="width:100%;">
+                                        <option value="">-- Escolha um serviço --</option>
+                                        <option value="email">Email</option>
+                                        <option value="sms">SMS</option>
+                                        <option value="emailsreg">Emails Registados</option>
+                                        <option value="assinaturas">Assinaturas de Contratos</option>
+                                        <option value="devolucao">Devolução PDFs</option>
+                                        <option value="pdfonthefly">PDFonTheFly</option>
+                                        <option value="assdigital">Assinatura Digital Qualificada</option>
+                                        <option value="edi">EDI</option>
+                                        <option value="certificacao">Certificação de Contactos</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+ Adicionar</button>
                             </div>
                         </fieldset>
                     </div>
+                    
+                    <!-- TODO: SERVICOSDIGITAIS - Container para os fieldsets de serviços adicionados -->
+                    <div id="servicosDigitaisContainer"></div>
                 </div>
 
                 <!-- TODO: TABSLIST - Painel da aba Serviços & Preços -->
@@ -984,61 +922,122 @@
             tbody.appendChild(tr);
         }
 
-        // TODO: SERVICOSDIGITAIS - Lista de serviços disponíveis na ordem ESQUERDA→DIREITA
-        var servicosDisponiveis = ['sms', 'emailsreg', 'assinaturas', 'devolucao', 'pdfonthefly', 'assdigital', 'edi', 'certificacao'];
-        var servicosVisiveis = []; // Controla quais serviços estão visíveis
-        
-        // TODO: SERVICOSDIGITAIS - Adiciona próxima coluna de serviço (ESQUERDA→DIREITA)
-        function addServicoColumn() {
-            // Procura o próximo serviço ainda não visível
-            for (var i = 0; i < servicosDisponiveis.length; i++) {
-                var servico = servicosDisponiveis[i];
-                
-                // Se este serviço ainda não está na lista de visíveis
-                if (servicosVisiveis.indexOf(servico) === -1) {
-                    // Adiciona à lista de visíveis
-                    servicosVisiveis.push(servico);
-                    
-                    // Mostra todas as células desta coluna (th + todos os td) usando visibility:visible
-                    var servicoClass = '.col-' + servico;
-                    var colunas = document.querySelectorAll(servicoClass);
-                    colunas.forEach(function(col) {
-                        col.style.visibility = 'visible';
-                    });
-                    return;
-                }
+        // TODO: SERVICOSDIGITAIS - Adiciona fieldset de serviço conforme seleção da dropdown
+        function adicionarServicoDigital() {
+            var select = document.getElementById('selectServicoDigital');
+            var servicoId = select.value;
+            
+            if (!servicoId) {
+                alert('Por favor, selecione um serviço!');
+                return;
             }
             
-            // Se chegou aqui, todas as colunas já estão visíveis
-            alert('Todos os serviços já foram adicionados!');
+            var container = document.getElementById('servicosDigitaisContainer');
+            
+            // Verifica se o serviço já foi adicionado (previne duplicados)
+            var servicoExistente = container.querySelector('[data-servico-id="' + servicoId + '"]');
+            if (servicoExistente) {
+                alert('Este serviço já se encontra ativo!');
+                return;
+            }
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.style.margin = '0 0 16px 0';
+            
+            var fieldset = document.createElement('fieldset');
+            fieldset.setAttribute('data-servico-id', servicoId);
+            var conteudo = '';
+            
+            // Define conteúdo conforme o serviço escolhido
+            switch(servicoId) {
+                case 'email':
+                    fieldset.innerHTML = '<legend>Email</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>From email</label><input type="text" placeholder="exemplo@email.com"></div>' +
+                        '<div><label>From name</label><input type="text" placeholder="Nome do remetente"></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'sms':
+                    fieldset.innerHTML = '<legend>SMS</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Provider</label><select><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'emailsreg':
+                    fieldset.innerHTML = '<legend>Emails Registados</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'assinaturas':
+                    fieldset.innerHTML = '<legend>Assinaturas de Contratos</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'devolucao':
+                    fieldset.innerHTML = '<legend>Devolução PDFs</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Método</label><select><option>FTP</option><option>SFTP</option><option>Email</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'pdfonthefly':
+                    fieldset.innerHTML = '<legend>PDFonTheFly</legend>' +
+                        '<div style="padding: 10px 0;">' +
+                        '<label style="font-weight: 500; color: #28a745;">✓ Ativado</label>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'assdigital':
+                    fieldset.innerHTML = '<legend>Assinatura Digital Qualificada</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Provider</label><select><option>DigitalSign</option><option>Outro</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'edi':
+                    fieldset.innerHTML = '<legend>EDI</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Provider</label><select><option>Cegid</option><option>Outro</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+                    
+                case 'certificacao':
+                    fieldset.innerHTML = '<legend>Certificação de Contactos</legend>' +
+                        '<div class="fieldset-grid">' +
+                        '<div><label>Canal</label><select><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>' +
+                        '</div>' +
+                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                    break;
+            }
+            
+            card.appendChild(fieldset);
+            container.appendChild(card);
+            
+            // Reset da dropdown
+            select.value = '';
         }
         
-        // TODO: SERVICOSDIGITAIS - Remove última coluna de serviço visível (ordem REVERSA)
-        function removeServicoColumn() {
-            // Se há serviços visíveis, remove o último
-            if (servicosVisiveis.length > 0) {
-                // Pega o último serviço da lista de visíveis
-                var ultimoServico = servicosVisiveis.pop();
-                
-                // Oculta todas as células desta coluna (th + todos os td) usando visibility:collapse
-                var servicoClass = '.col-' + ultimoServico;
-                var colunas = document.querySelectorAll(servicoClass);
-                colunas.forEach(function(col) {
-                    col.style.visibility = 'collapse';
-                });
-            } else {
-                // Não há serviços adicionais para remover
-                alert('Não há serviços adicionais para remover!');
+        // TODO: SERVICOSDIGITAIS - Remove o card/fieldset do serviço
+        function removerServicoFieldset(btn) {
+            var card = btn.closest('.card');
+            if (card) {
+                card.remove();
             }
         }
-        
-        // TODO: SERVICOSDIGITAIS - Inicializa: oculta todas as colunas de serviços exceto Email usando visibility:collapse
-        document.addEventListener('DOMContentLoaded', function() {
-            servicosVisiveis = []; // Reseta lista de visíveis
-            document.querySelectorAll('.col-servico').forEach(function(col) {
-                col.style.visibility = 'collapse';
-            });
-        });
 
         // TODO: Converte string para número float (garante vírgula → ponto)
         function toNum(v){
