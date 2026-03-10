@@ -1,1 +1,958 @@
 
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produção - ES</title>
+    <style>
+        /* ==========================================================================
+           TODO O TEU CSS (THEME) INLINE
+           ========================================================================== */
+        :root {
+            --brand: #0d6efd; 
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text: #212529;
+            --muted: #6c757d;
+            --border: #dee2e6;
+            --warn: #dc3545;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+        .header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--brand); color: #fff; }
+        .header .title { font-size: 18px; font-weight: 600; }
+        .header .user { font-size: 13px; opacity: .95; }
+        .app { display: flex; min-height: calc(100vh - 52px); }
+        .sidebar { width: 260px; background: #0b5ed7; color: #fff; padding: 16px 12px; }
+        .sidebar a { display: block; padding: 10px 12px; border-radius: 8px; color: #fff; text-decoration: none; font-size: 14px; margin-bottom: 4px;}
+        .sidebar a:hover { background: rgba(255,255,255,.12); }
+        .sidebar a.active { background: rgba(255,255,255,.20); font-weight: 600; }
+        .content { flex: 1; padding: 18px; }
+        .breadcrumbs { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,.05); padding: 16px; margin-bottom: 16px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+        .small { font-size: 12px; color: var(--muted); }
+        .note { font-size: 12px; color: var(--text); background: #e9ecef; border: 1px solid var(--border); padding: 10px 12px; border-radius: 10px; margin-bottom: 12px;}
+        /*TODO: ADICIONAR A START OU DEIXAR A END*/
+        .actions-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-start; margin-top: 12px; }
+        .btn { border: 0; border-radius: 8px; padding: 9px 14px; cursor: pointer; font-weight: 600; font-size: 13px; }
+        .btn-primary { background: var(--brand); color: #fff; }
+        .btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
+        .btn-danger { background: var(--warn); color: #fff; }
+        label { font-size: 13px; color: var(--text); display: block; margin-bottom: 4px; font-weight: 500;}
+        /* TODO: GLOBAL - Estilos base para inputs text, number, time e select */
+        input[type=text], input[type=number], input[type=time], select {
+             width: 100%; height: 2.3rem; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: #fff; }
+        /* TODO: GLOBAL - Estado focus para inputs text, number, time e select (cor sidebar) */
+        input[type=text]:focus, input[type=number]:focus, input[type=time]:focus, select:focus {
+             border-color: #0b5ed7; outline: 2px solid #0b5ed7; outline-offset: -1px; }
+
+        /* TODO: GLOBAL - Estilos para radio buttons e checkboxes (cor sidebar) */
+        input[type=radio], input[type=checkbox] { accent-color: #0b5ed7; cursor: pointer; }
+
+
+        /* TODO: GLOBAL - Estilos base para textarea */
+        textarea { width: 100%; min-height: 90px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; background: #fff; }
+
+
+        /* TODO: GLOBAL - Estado focus para textarea (cor sidebar) */
+        textarea:focus { border-color: #0b5ed7; outline: 2px solid #0b5ed7; outline-offset: -1px; }
+
+
+        
+        fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px 12px; margin: 0 0 12px; }
+        /* TODO: legend mais visível - negrito forte e cor do texto principal em vez de muted */
+        legend { padding: 0 6px; font-size: 13px; color: var(--text); font-weight: 500; }
+
+
+        /* TODO: minwidth reduzido de 220px para 150px para caber 3 colunas a partir de ~500px de conteúdo */
+        .fieldset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+
+
+        .table-compact { width: 100%; border-collapse: collapse; margin-top: 8px;}
+        .table-compact th, .table-compact td { padding: 6px 8px; font-size: 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: middle; }
+        .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .kpi { font-weight: 700; }
+
+        /* TODO: Responsividade geral - sidebar esconde abaixo de 900px */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .content { padding: 12px; }
+        }
+
+        /* TODO: CARACTERIZAÇÃO - Breakpoint 1024px — Periodicidade (esquerda), Hora+SLA (direita em COLUNA) */
+        @media (max-width: 1100px) {
+            .propriedades-grid {
+                display: grid;
+                grid-template-columns: 1fr 200px;
+                grid-template-rows: auto auto;
+                gap: 12px 24px;
+                align-items: start;
+            }
+            .propriedades-grid .prop-periodicidade {
+                grid-column: 1;
+                grid-row: 1 / 3;
+            }
+            .propriedades-grid .prop-hora {
+                grid-column: 2;
+                grid-row: 1;
+                width: 200px;
+            }
+            .propriedades-grid .prop-sla {
+                grid-column: 2;
+                grid-row: 2;
+                width: 200px;
+            }
+        }
+
+        
+        /* TODO: TABSLIST - Contentor das abas — flex wrap para quebrar linha em ecrãs pequenos */
+        .tabs { display: flex; flex-wrap: wrap;  border-bottom: 1px solid var(--border); margin-bottom: 16px; padding-left: 0; }
+
+
+        /* TODO: TABSLIST - Estilo base de cada botão de aba — transparente, apenas cor de marca */
+        .tab { 
+            padding: 10px 16px; 
+            border: 1px solid transparent; 
+            background: transparent; 
+            cursor: pointer; 
+            font-size: 14px; 
+            font-weight: 500; 
+            color: var(--brand);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            margin-bottom: -1px; 
+        }
+
+
+        /* TODO: TABSLIST - Hover da aba — borda visível excepto na base para "colar" ao conteúdo */
+        .tab:hover { border-color: var(--border) var(--border) transparent; }
+
+
+
+        /* TODO: TABSLIST - Aba activa — fundo branco, borda em 3 lados, peso 600 */
+        .tab.active { 
+            color: var(--text); 
+            background-color: var(--card); 
+            border-color: var(--border) var(--border) var(--card); 
+            font-weight: 600;
+        }
+
+        /* TODO: TABSLIST - Painéis de aba ocultos por defeito; .active mostra o painel seleccionado */
+        .tab-panel { display: none; }
+
+
+        .tab-panel.active { display: block; }
+
+        /* Desktop - mantém como está */
+        .tab { padding: 10px 16px; font-size: 14px; }
+
+        /* Tablet (768px) - ligeiramente menor */
+        @media (max-width: 768px) {
+            .tab { padding: 8px 12px; font-size: 13px; }
+        }
+
+        /* Mobile (480px) - compacto mas legível */
+        @media (max-width: 480px) {
+            .tab { padding: 6px 10px; font-size: 12px; }
+        }
+
+        /* TODO: CARACTERIZAÇÃO - Contentor do switch + label — flex horizontal, centrado verticalmente */
+        .switch-container { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Elemento switch — bloco relativo com dimensões fixas 44×24px */
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Input nativo escondido — acessível mas invisível */
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Slider (fundo do toggle) — borda arredondada, cinza por defeito */
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 24px; }
+
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Bolinha branca do toggle — posicionada à esquerda por defeito */
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; 
+        border-radius: 50%; }
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Quando checked — fundo muda para cor de marca */
+        input:checked + .slider { background-color: var(--brand); }
+
+
+
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Quando checked — bolinha desloca-se para a direita */
+        input:checked + .slider:before { transform: translateX(20px); }
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Label ao lado do switch — negrito, clicável, sem margin-bottom */
+        .switch-label { font-weight: 600; font-size: 14px; cursor: pointer; user-select: none; margin-bottom: 0; }
+
+
+
+
+        /* TODO: CARACTERIZAÇÃO - Classe utilitária para esconder elementos via JS (usada nos switches) */
+        .esconder { display: none !important; }
+
+
+
+
+
+        /* TODO: PAPEIS - Switches inline compactos para tabelas - versão menor 38×20px */
+        .switch-inline { position: relative; display: inline-block; width: 38px; height: 20px; vertical-align: middle; }
+
+
+
+        /* TODO: PAPEIS - Input nativo escondido mas acessível */
+        .switch-inline input { opacity: 0; width: 0; height: 0; }
+
+
+        /* TODO: PAPEIS - Slider (fundo do toggle) - cinza por defeito */
+        .switch-inline .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 20px; }
+
+
+
+
+
+        /* TODO: PAPEIS - Bolinha branca do toggle - posicionada à esquerda por defeito */
+        .switch-inline .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+
+
+
+
+
+        /* TODO: PAPEIS - Quando checked - fundo azul (cor sidebar) */
+        .switch-inline input:checked + .slider { background-color: #0b5ed7; }
+
+
+
+        /* TODO: PAPEIS - Quando checked - bolinha desloca-se para a direita */
+        .switch-inline input:checked + .slider:before { transform: translateX(18px); }
+
+
+
+        /* TODO: PAPEIS - Container para switch + label de texto em linha */
+        .switch-inline-container { display: inline-flex; align-items: center; gap: 6px; }
+
+
+        
+        /* TODO: PAPEIS - Label de texto ao lado do switch mostrando Sim/Não */
+        .switch-inline-label { font-size: 12px; font-weight: 600; color: var(--text); user-select: none; min-width: 30px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">ContiU - Protótipo ES</div>
+        <div class="user">Sessão: <strong>Utilizador AD (mock)</strong></div>
+    </div>
+    
+    <div class="app">
+        <aside class="sidebar">
+            <a href="#">Home</a>
+            <a href="#">Login</a>
+            <a href="#">ES - Pesquisa</a>
+            <a href="#" class="active">Produção - ES</a>
+        </aside>
+        
+        <main class="content">
+            <div class="breadcrumbs">Produção / ES / Editor</div>
+
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap">
+                    <div>
+                        <h2 style="margin:0">Definição de Especificações de Serviço</h2>
+                        <div class="small">Editor ES (mock) - v18 (Grupos como Inserts: Adicionar + Remover).</div>
+                    </div>
+                    <div class="actions-row" style="margin-top:0">
+                        <button class="btn btn-ghost">Nova Versão</button>
+                        <button class="btn btn-primary">Guardar</button>
+                        <button class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-top:0">Identificação</h3>
+                <div class="grid">
+                    <div><label>ID ES</label><input type="text" value="232" readonly></div>
+                    <div><label>Versão</label><input type="text" value="377" readonly></div>
+                    <div><label>Cliente</label><input type="text" value="UNIVERSO, IME, S.A" readonly></div>
+                    <div><label>Projeto</label><input type="text" value="SFS" readonly></div>
+                    <div><label>Departamento</label><input type="text" value="EXT" readonly></div>
+                    <div><label>Serviço</label><input type="text" value="EXTRACTOS SONAE FS" readonly></div>
+                    <div><label>Tipo de Serviço</label>
+                        <select><option selected>Normal</option><option>Pack</option><option>Cartões</option><option>Visita</option><option>Desenv.</option></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="note"><strong>DRP (Disaster Recovery Plan):</strong> define por serviço se está incluído em DRP, o <strong>preço em DRP</strong> e, se aplicável, <strong>papel/envelope em DRP</strong> diferentes.</div>
+            </div>
+            <!-- TODO: TABSLIST - Card que contém todas as abas e painéis -->
+            <div class="card">
+                <!-- TODO: TABSLIST - Container das abas de navegação -->
+                <div class="tabs" role="tablist">
+                    <!-- TODO: TABSLIST - Aba Caracterização (activa por defeito) -->
+                    <button class="tab active" data-tab="tab-caracterizacao">Caracterização</button>
+                    <!-- TODO: TABSLIST - Aba Papéis -->
+                    <button class="tab" data-tab="tab-papeis">Papéis</button>
+                    <!-- TODO: TABSLIST - Aba Envelopes -->
+                    <button class="tab" data-tab="tab-envelopes">Envelopes</button>
+                    <!-- TODO: TABSLIST - Aba Inserts -->
+                    <button class="tab" data-tab="tab-inserts">Inserts</button>
+                    <!-- TODO: TABSLIST - Aba Serviços digitais -->
+                    <button class="tab" data-tab="tab-servicos-digitais">Serviços digitais</button>
+                    <!-- TODO: TABSLIST - Aba Serviços & Preços -->
+                    <button class="tab" data-tab="tab-servicos">Serviços &amp; Preços</button>
+                    <!-- TODO: TABSLIST - Aba DRP -->
+                    <button class="tab" data-tab="tab-drp">DRP</button>
+                    <!-- TODO: TABSLIST - Aba Observações -->
+                    <button class="tab" data-tab="tab-observacoes">Observações</button>
+                    <!-- TODO: TABSLIST - Aba Grupos de Faturação -->
+                    <button class="tab" data-tab="tab-grupos">Grupos de Faturação</button>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Caracterização (visível por defeito) -->
+                <div id="tab-caracterizacao" class="tab-panel active">
+                    <!-- TODO: CARACTERIZAÇÃO - Fieldset Impressão — switch liga/desliga impressão; quando desligado esconde opções Duplex/Simplex/Multilep via JS toggleImpressao() -->
+                    <fieldset>
+                        <legend>Impressão</legend>
+                        <!-- TODO: CARACTERIZAÇÃO - Container do switch Com/Sem Impressão -->
+                        <div class="switch-container">
+                            <!-- TODO: CARACTERIZAÇÃO - Switch toggle Impressão -->
+                            <label class="switch">
+                                <!-- TODO: CARACTERIZAÇÃO - Checkbox que controla estado do switch Impressão -->
+                                <input type="checkbox" id="chkImpressao" checked onchange="toggleImpressao(this)">
+                                <!-- TODO: CARACTERIZAÇÃO - Slider visual do switch Impressão -->
+                                <span class="slider"></span>
+                            </label>
+                            <!-- TODO: CARACTERIZAÇÃO - Label do switch mostra Com/Sem Impressão -->
+                            <label class="switch-label" for="chkImpressao" id="lblImpressao">Com Impressão</label>
+                        </div>
+                        
+                        <!-- TODO: CARACTERIZAÇÃO - Opções de impressão (Duplex/Simplex/Multilep) escondidas quando switch desligado -->
+                        <div id="opcoes-impressao" style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
+                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="checkbox"> Duplex</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="checkbox"> Simplex</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Multilep</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- TODO: CARACTERIZAÇÃO - Fieldset Envelopagem — switch liga/desliga envelopagem; quando desligado esconde opções Automática/Manual via JS toggleEnvelopagem() -->
+                    <fieldset>
+                        <legend>Envelopagem</legend>
+                        <!-- TODO: CARACTERIZAÇÃO - Container do switch Com/Sem Envelopagem -->
+                        <div class="switch-container">
+                            <!-- TODO: CARACTERIZAÇÃO - Switch toggle Envelopagem -->
+                            <label class="switch">
+                                <!-- TODO: CARACTERIZAÇÃO - Checkbox que controla estado do switch Envelopagem -->
+                                <input type="checkbox" id="chkEnvelopagem" checked onchange="toggleEnvelopagem(this)">
+                                <!-- TODO: CARACTERIZAÇÃO - Slider visual do switch Envelopagem -->
+                                <span class="slider"></span>
+                            </label>
+                            <!-- TODO: CARACTERIZAÇÃO - Label do switch mostra Com/Sem Envelopagem -->
+                            <label class="switch-label" for="chkEnvelopagem" id="lblEnvelopagem">Com Envelopagem</label>
+                        </div>
+                        
+                        <!-- TODO: CARACTERIZAÇÃO - Opções de envelopagem (Automática/Manual) escondidas quando switch desligado -->
+                        <div id="opcoes-envelopagem" style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
+                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="modo" checked> Automática</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="radio" name="modo"> Manual</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- TODO: CARACTERIZAÇÃO - Fieldset Expedição — tabela de providers com contrato cliente e contrato; linhas adicionáveis/removíveis via addExpedicaoProvider()/removeRow() -->
+                    <fieldset>
+                        <legend>Expedição</legend>
+                        <!-- TODO: CARACTERIZAÇÃO - Nota explicativa sobre providers e contratos -->
+                        <div class="small" style="margin-bottom:8px;">Providers e contratos (por provider). Periodicidade/Hora/SLA estão em "Propriedades".</div>
+                        <!-- TODO: CARACTERIZAÇÃO - Tabela de providers de expedição -->
+                        <table class="table-compact">
+                            <!-- TODO: CARACTERIZAÇÃO - Cabeçalho da tabela de providers -->
+                            <thead><tr><th style="width:140px">Provider</th><th>Contrato cliente</th><th>Contrato</th><th style="width:160px"></th></tr></thead>
+                            <!-- TODO: CARACTERIZAÇÃO - Corpo da tabela de providers -->
+                            <tbody id="expedicaoProvidersBody">
+                                <!-- TODO: CARACTERIZAÇÃO - Linha de exemplo de provider de expedição -->
+                                <tr>
+                                    <!-- TODO: CARACTERIZAÇÃO - Select de provider (CTT/PGM/Interno/Outro) -->
+                                    <td><select><option>CTT</option><option>PGM</option><option>Interno</option><option>Outro</option></select></td>
+                                    <!-- TODO: CARACTERIZAÇÃO - Input Contrato cliente -->
+                                    <td><input type="text" value="200058601"></td>
+                                    <!-- TODO: CARACTERIZAÇÃO - Input Contrato -->
+                                    <td><input type="text" placeholder="ex.: CONTRATO RP"></td>
+                                    <!-- TODO: CARACTERIZAÇÃO - Botão Remover provider -->
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- TODO: CARACTERIZAÇÃO - Botão para adicionar novo provider de expedição -->
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addExpedicaoProvider()">+ Adicionar Provider</button></div>
+                    </fieldset>
+
+                    <!-- TODO: CARACTERIZAÇÃO - Fieldset Propriedades — grid 3 colunas (>1200px); ao 1024px: Periodicidade à esquerda, Hora+SLA à direita -->
+                    <fieldset>
+                        <legend>Propriedades</legend>
+                        <!-- TODO: CARACTERIZAÇÃO - propriedades-grid — 3 divs: Periodicidade, Hora de corte, SLA (reorganizados via CSS Grid ao 1024px) -->
+                        <div class="fieldset-grid propriedades-grid">
+                            <!-- TODO: CARACTERIZAÇÃO - Periodicidade — sempre visível -->
+                            <div class="prop-periodicidade">
+                                <!-- TODO: CARACTERIZAÇÃO - Label Periodicidade -->
+                                <label>Periodicidade</label>
+                                <!-- TODO: CARACTERIZAÇÃO - Radio buttons para periodicidade (Diário/Mensal/Semanal/Ocasional) -->
+                                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade" checked> Diário</label>
+                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Mensal</label>
+                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Semanal</label>
+                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Ocasional</label>
+                                </div>
+                            </div>
+                            <!-- TODO: CARACTERIZAÇÃO - Hora de corte -->
+                            <div class="prop-hora"><label>Hora de corte</label><input type="time" value="14:00"></div>
+                            <!-- TODO: CARACTERIZAÇÃO - SLA -->
+                            <div class="prop-sla"><label>SLA acordado (em dias)</label><input type="number" value="2"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TODO: PAPEIS - Início da secção de Papéis -->
+                <div id="tab-papeis" class="tab-panel">
+                    <!-- TODO: PAPEIS - Nota explicativa sobre campos de cada papel -->
+                    <div class="note" style="margin-bottom:12px;">Cada papel: Papel cliente (Sim/Não), FSC (Sim/Não), Papel com logo (Sim/Não), Ref Cliente, Ref Interna, Descrição.</div>
+                    
+                    <!-- TODO: PAPEIS - Card da tabela Papéis (Normal) -->
+                    <div class="card" style="margin:0; margin-bottom:16px;">
+                        <h4 style="margin-top:0">Papéis (Normal)</h4>
+                        <!-- TODO: PAPEIS - Tabela de papéis normais com switches inline -->
+                        <table class="table-compact">
+                            <!-- TODO: PAPEIS - Cabeçalho da tabela com larguras fixas para cada coluna -->
+                            <thead>
+                                <tr>
+                                    <th style="width:70px">Papel cliente</th>
+                                    <th style="width:70px">FSC</th>
+                                    <th style="width:130px">Papel com logo</th>
+                                    <th style="width:160px">Ref Cliente</th>
+                                    <th style="width:160px">Ref Interna</th>
+                                    <th style="width:170px">Descrição</th>
+                                    <th style="width:20px"></th>
+                                </tr>
+                            </thead>
+                            <!-- TODO: PAPEIS - Corpo da tabela Normal - cada linha tem 3 switches + 3 inputs + botão Remover -->
+                            <tbody id="papersNormalBody">
+                                <!-- TODO: PAPEIS - Linha de exemplo com switches checked (Sim = azul) -->
+                                <tr>
+                                    <!-- TODO: PAPEIS - Switch Papel cliente com label Sim/Não -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Switch FSC com label Sim/Não -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Switch Papel com logo com label Sim/Não -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Input Ref Cliente -->
+                                    <td><input type="text" placeholder="ex. PAPEL BRANCO A4"></td>
+                                    <!-- TODO: PAPEIS - Input Ref Interna -->
+                                    <td><input type="text" placeholder="ex. PFT000A4000007"></td>
+                                    <!-- TODO: PAPEIS - Input Descrição -->
+                                    <td><input type="text" placeholder="ex. Papel A4 80g"></td>
+                                    <!-- TODO: PAPEIS - Botão Remover linha -->
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                            <button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- TODO: PAPEIS - Botão para adicionar nova linha de papel normal -->
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addPaperNormal()">+ Adicionar Papel</button></div>
+                    </div>
+
+                    <!-- TODO: PAPEIS - Card da tabela Papéis (DRP) -->
+                    <div class="card" style="margin:0">
+                        <h4 style="margin-top:0">Papéis (DRP)</h4>
+                        <!-- TODO: PAPEIS - Tabela de papéis DRP com switches inline -->
+                        <table class="table-compact">
+                            <!-- TODO: PAPEIS - Cabeçalho da tabela DRP (mesmas colunas que Normal) -->
+                            <thead><tr><th style="width:70px">Papel cliente</th><th style="width:70px">FSC</th><th style="width:130px">Papel com logo</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th style="width:170px">Descrição</th><th style="width:20px"></th></tr></thead>
+                            <!-- TODO: PAPEIS - Corpo da tabela DRP - switches unchecked (Não = cinzento) por defeito -->
+                            <tbody id="papersDrpBody">
+                                <!-- TODO: PAPEIS - Linha de exemplo com switches unchecked (Não = cinzento) -->
+                                <tr>
+                                    <!-- TODO: PAPEIS - Switch Papel cliente (unchecked = Não) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Switch FSC (unchecked = Não) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Switch Papel com logo (unchecked = Não) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: PAPEIS - Input Ref Cliente -->
+                                    <td><input type="text" placeholder="ex. PAPEL BRANCO A4 (DRP)"></td>
+                                    <!-- TODO: PAPEIS - Input Ref Interna -->
+                                    <td><input type="text" placeholder="ex. PFT000A4000007_DRP"></td>
+                                    <!-- TODO: PAPEIS - Input Descrição -->
+                                    <td><input type="text" placeholder="ex. Papel A4 80g (DRP)"></td>
+                                    <!-- TODO: PAPEIS - Botão Remover linha -->
+                                    <td><div style="display:flex; justify-content:flex-end; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- TODO: PAPEIS - Botão para adicionar nova linha de papel DRP -->
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addPaperDRP()">+ Adicionar Papel DRP</button></div>
+                    </div>
+                    <!-- TODO: PAPEIS - Fim da secção de Papéis -->
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Envelopes -->
+                <div id="tab-envelopes" class="tab-panel">
+                    <div class="note" style="margin-bottom:12px;">Cada envelope: Tipo (DL/C5/C4/ENCFSC), FSC (Sim/Não), Envelope com logo (Sim/Não), Tipo de envelopagem (Automática/Manual), Ref Cliente, Ref Interna, Descrição + Remover.</div>
+                    
+                    <div class="card" style="margin:0; margin-bottom:16px;">
+                        <h4 style="margin-top:0">Envelopes (Normal)</h4>
+                        <table class="table-compact">
+                            <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <tbody id="envNormalBody">
+                                <tr>
+                                    <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
+                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <td><select><option selected>Automática</option><option>Manual</option></select></td>
+                                    <td><input type="text" placeholder="ex.: DL 2 JANELAS"></td>
+                                    <td><input type="text" placeholder="ex.: MEV00CCM00138"></td>
+                                    <td><input type="text" placeholder="ex.: Envelope DL 2 janelas"></td>
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addEnvelope('envNormalBody')">+ Adicionar Envelope</button></div>
+                    </div>
+
+                    <div class="card" style="margin:0">
+                        <h4 style="margin-top:0">Envelopes (DRP)</h4>
+                        <table class="table-compact">
+                            <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <tbody id="envDrpBody">
+                                <tr>
+                                    <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
+                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <td><select><option selected>Automática</option><option>Manual</option></select></td>
+                                    <td><input type="text" placeholder="ex.: DL 2 JANELAS (DRP)"></td>
+                                    <td><input type="text" placeholder="ex.: MEV00CCM00138_DRP"></td>
+                                    <td><input type="text" placeholder="ex.: Envelope DL 2 janelas (DRP)"></td>
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addEnvelope('envDrpBody')">+ Adicionar Envelope DRP</button></div>
+                    </div>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Inserts -->
+                <div id="tab-inserts" class="tab-panel">
+                    <div class="note" style="margin-bottom:12px;">Cada insert inclui: Peça cliente (Sim/Não), Ref Cliente, Ref Interna, Descrição e Peso (g). Permite adicionar, editar e remover.</div>
+                    <div class="card" style="margin:0">
+                        <h4 style="margin-top:0">Inserts</h4>
+                        <table class="table-compact">
+                            <thead><tr><th style="width:120px">Peça cliente</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:110px">Peso (g)</th><th style="width:150px"></th></tr></thead>
+                            <tbody id="insertsBody">
+                                <tr>
+                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <td><input type="text" placeholder="ex.: INS-001"></td>
+                                    <td><input type="text" placeholder="ex.: MLL00XXX000123"></td>
+                                    <td><input type="text" placeholder="ex.: Folheto promocional"></td>
+                                    <td><input type="number" value="5" min="0" step="1"></td>
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addInsert()">+ Adicionar Insert</button></div>
+                    </div>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Serviços digitais -->
+                <div id="tab-servicos-digitais" class="tab-panel">
+                    <fieldset><legend>Email</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="email_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="email_on"> Não</label></div>
+                            <div><label>From email</label><input type="text"></div>
+                            <div><label>From name</label><input type="text"></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>SMS</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="sms_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="sms_on"> Não</label></div>
+                            <div><label>Provider</label><select><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>Emails registados</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="ereg_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="ereg_on"> Não</label></div>
+                            <div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>Assinaturas de contratos</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="ac_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="ac_on"> Não</label></div>
+                            <div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>Devolução PDFs</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="devpdf_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="devpdf_on"> Não</label></div>
+                            <div><label>Método</label><select><option>FTP</option><option>SFTP</option><option>Email</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>PDFonTheFly</legend>
+                        <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="pdffly_on" checked> Sim</label><label style="display:inline-block;"><input type="radio" name="pdffly_on"> Não</label></div>
+                    </fieldset>
+                    <fieldset><legend>Assinatura digital qualificada</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="adq_on"> Sim</label><label style="display:inline-block;"><input type="radio" name="adq_on" checked> Não</label></div>
+                            <div><label>Provider</label><select><option>DigitalSign</option><option>Outro</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>EDI</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="edi_on"> Sim</label><label style="display:inline-block;"><input type="radio" name="edi_on" checked> Não</label></div>
+                            <div><label>Provider</label><select><option>Cegid</option><option>Outro</option></select></div>
+                        </div>
+                    </fieldset>
+                    <fieldset><legend>Certificação de contactos</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-block; margin-right:8px;"><input type="radio" name="cc_on"> Sim</label><label style="display:inline-block;"><input type="radio" name="cc_on" checked> Não</label></div>
+                            <div><label>Canal</label><select><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Serviços & Preços -->
+                <div id="tab-servicos" class="tab-panel">
+                    <div class="note" style="margin-bottom:12px;">Campos editáveis: Venda (Normal/DRP) e Custo (Normal/DRP). Margens (Normal e DRP) calculadas automaticamente. (Sem fieldset "Outros Serviços").</div>
+                    <div class="card" style="margin:0">
+                        <fieldset>
+                            <legend>Serviços & Preços por Milheiro</legend>
+                            <table class="table-compact" id="tblServicos">
+                                <thead>
+                                    <tr>
+                                        <th style="width:90px">Código</th>
+                                        <th>Descrição</th>
+                                        <th style="width:140px">Serviço digital</th>
+                                        <th style="width:120px">Venda (Normal)</th>
+                                        <th style="width:120px">Custo (Normal)</th>
+                                        <th style="width:120px">Margem (Normal)</th>
+                                        <th style="width:120px">Venda (DRP)</th>
+                                        <th style="width:120px">Custo (DRP)</th>
+                                        <th style="width:120px">Margem (DRP)</th>
+                                        <th style="width:120px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblServicosBody">
+                                    <tr>
+                                        <td><input type="text" value="EML"></td>
+                                        <td><input type="text" value="Envio Email"></td>
+                                        <td><select><option selected>Email</option><option>SMS</option><option>Devolução PDFs</option><option>Assinatura digital qualificada</option><option>EDI</option><option>Certificação de contactos</option></select></td>
+                                        <td class="num"><input type="number" class="venda-normal" value="16.37" step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num"><input type="number" class="custo-normal" value="10.00" step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num kpi"><span class="margem-normal">-</span></td>
+                                        <td class="num"><input type="number" class="venda-drp" value="0.00" step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num"><input type="number" class="custo-drp" value="0.00" step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num kpi"><span class="margem-drp">-</span></td>
+                                        <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addService()">+ Novo Serviço</button></div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba DRP -->
+                <div id="tab-drp" class="tab-panel">
+                    <fieldset>
+                        <legend>Cobertura</legend>
+                        <div class="fieldset-grid">
+                            <div><label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" checked> ES tem DRP contratado</label></div>
+                            <div><label>Notas DRP</label><input type="text"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Observações -->
+                <div id="tab-observacoes" class="tab-panel">
+                    <div class="grid">
+                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações Gerais</h4><textarea></textarea></div>
+                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações para Produção</h4><textarea></textarea></div>
+                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações para Expedição</h4><textarea></textarea></div>
+                        <div class="card" style="margin:0"><h4 style="margin-top:0">Motivo da Alteração</h4><textarea></textarea></div>
+                    </div>
+                </div>
+
+                <!-- TODO: TABSLIST - Painel da aba Grupos de Faturação -->
+                <div id="tab-grupos" class="tab-panel">
+                    <div class="note" style="margin-bottom:12px;">Funciona como os Inserts: podes <strong>adicionar</strong> linhas e <strong>remover</strong> da lista.</div>
+                    <div class="card" style="margin:0">
+                        <h4 style="margin-top:0">Grupos de Faturação</h4>
+                        <table class="table-compact">
+                            <thead><tr><th style="width:140px">Código</th><th>Descrição</th><th style="width:160px"></th></tr></thead>
+                            <tbody id="gruposBody">
+                                <tr>
+                                    <td><input type="text" value="EXT"></td>
+                                    <td><input type="text" value="EXTRACTOS SONAE FS"></td>
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addGrupo()">+ Adicionar Grupo</button></div>
+                    </div>
+                </div>
+
+            </div> </main>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------
+        // TODO: TABSLIST - LÓGICA DE NAVEGAÇÃO DAS ABAS
+        // ---------------------------------------------------------
+        
+        // TODO: TABSLIST - Função que activa uma aba específica pelo ID
+        function activateTab(tabId) {
+            // TODO: TABSLIST - Remove classe active de todas as abas
+            document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+            // TODO: TABSLIST - Remove classe active de todos os painéis
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            
+            // TODO: TABSLIST - Encontra o botão e painel correspondentes ao tabId
+            var btn = document.querySelector('.tab[data-tab="' + tabId + '"]');
+            var panel = document.getElementById(tabId);
+            
+            // TODO: TABSLIST - Adiciona classe active ao botão e painel seleccionados
+            if(btn) btn.classList.add('active');
+            if(panel) panel.classList.add('active');
+        }
+
+        // TODO: TABSLIST - Event listeners para todos os botões de aba
+        document.querySelectorAll('.tab').forEach(btn => {
+            btn.addEventListener('click', function() {
+                activateTab(this.getAttribute('data-tab'));
+            });
+        });
+
+        // ---------------------------------------------------------
+        // 2. LÓGICA DOS SWITCHES DA ABA CARACTERIZAÇÃO - TODO: CARACTERIZAÇÃO
+        // ---------------------------------------------------------
+
+        // TODO: CARACTERIZAÇÃO - Toggle switch Impressão - mostra/esconde opções Duplex/Simplex/Multilep e actualiza label
+        function toggleImpressao(checkbox) {
+            var label = document.getElementById('lblImpressao');
+            var opcoes = document.getElementById('opcoes-impressao');
+            if (checkbox.checked) {
+                label.innerText = 'Com Impressão';
+                opcoes.classList.remove('esconder');
+            } else {
+                label.innerText = 'Sem Impressão';
+                opcoes.classList.add('esconder');
+            }
+        }
+
+        // TODO: CARACTERIZAÇÃO - Toggle switch Envelopagem - mostra/esconde opções Automática/Manual e actualiza label
+        function toggleEnvelopagem(checkbox) {
+            var label = document.getElementById('lblEnvelopagem');
+            var opcoes = document.getElementById('opcoes-envelopagem');
+            if (checkbox.checked) {
+                label.innerText = 'Com Envelopagem';
+                opcoes.classList.remove('esconder');
+            } else {
+                label.innerText = 'Sem Envelopagem';
+                opcoes.classList.add('esconder');
+            }
+        }
+
+        // ---------------------------------------------------------
+        // 3. LÓGICA ORIGINAL DE TABELAS E CÁLCULOS
+        // ---------------------------------------------------------
+
+        // TODO: Remove a linha da tabela onde o botão Remover foi clicado e recalcula margens
+        function removeRow(btn){
+            try { 
+                var tr = btn.closest('tr'); 
+                if(tr) tr.remove(); 
+                recalcMargins(); 
+            } catch(e) {}
+        }
+
+        // TODO: Adiciona uma nova linha ao tbody de Grupos de Faturação
+        function addGrupo(){
+            var tbody = document.getElementById('gruposBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><input type='text' value='NEW'></td>" +
+                           "<td><input type='text' value='Novo grupo'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: CARACTERIZAÇÃO - Adiciona uma nova linha de provider à tabela de Expedição
+        function addExpedicaoProvider(){
+            var tbody = document.getElementById('expedicaoProvidersBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><select><option>CTT</option><option>PGM</option><option>Interno</option><option>Outro</option></select></td>" +
+                           "<td><input type='text' placeholder='ex.: 200058601'></td>" +
+                           "<td><input type='text' placeholder='ex.: CONTRATO RP'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: PAPEIS - Adiciona nova linha de papel à tabela Normal (papersNormalBody) com switches + labels Sim/Não
+        function addPaperNormal(){
+            var tbody = document.getElementById('papersNormalBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><input type='text' placeholder='ex. PAPEL BRANCO A4'></td>" +
+                           "<td><input type='text' placeholder='ex. PFT000A4000007'></td>" +
+                           "<td><input type='text' placeholder='ex. Papel A4 80g'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: PAPEIS - Adiciona nova linha de papel à tabela DRP (papersDrpBody) com switches + labels Sim/Não
+        function addPaperDRP(){
+            var tbody = document.getElementById('papersDrpBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><input type='text' placeholder='ex. PAPEL BRANCO A4 (DRP)'></td>" +
+                           "<td><input type='text' placeholder='ex. PFT000A4000007_DRP'></td>" +
+                           "<td><input type='text' placeholder='ex. Papel A4 80g (DRP)'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: PAPEIS - Toggle do label de texto Sim/Não quando o switch inline muda de estado
+        function toggleSwitchLabel(checkbox) {
+            var label = checkbox.closest('.switch-inline-container').querySelector('.switch-inline-label');
+            if (label) {
+                label.textContent = checkbox.checked ? 'Sim' : 'Não';
+            }
+        }
+
+        // TODO: Adiciona nova linha de envelope ao tbody indicado (Normal ou DRP)
+        function addEnvelope(tbodyId){
+            var tbody = document.getElementById(tbodyId);
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>" +
+                           "<td><select><option selected>Não</option><option>Sim</option></select></td>" +
+                           "<td><select><option selected>Não</option><option>Sim</option></select></td>" +
+                           "<td><select><option selected>Automática</option><option>Manual</option></select></td>" +
+                           "<td><input type='text' placeholder='Ref Cliente'></td>" +
+                           "<td><input type='text' placeholder='Ref Interna'></td>" +
+                           "<td><input type='text' placeholder='Descrição'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap;'><button class='btn btn-ghost' type='button'>Editar</button><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: Adiciona nova linha de insert ao tbody de Inserts
+        function addInsert(){
+            var tbody = document.getElementById('insertsBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "<td><select><option>Sim</option><option selected>Não</option></select></td>" +
+                           "<td><input type='text' placeholder='ex.: INS-001'></td>" +
+                           "<td><input type='text' placeholder='ex.: MLL00XXX000123'></td>" +
+                           "<td><input type='text' placeholder='ex.: Descrição'></td>" +
+                           "<td><input type='number' value='0' min='0' step='1'></td>" +
+                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-ghost' type='button'>Editar</button><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: Converte string para número float (garante vírgula → ponto)
+        function toNum(v){
+            var n = parseFloat(String(v||'').replace(',', '.'));
+            return isNaN(n) ? 0 : n;
+        }
+
+        // TODO: Formata número como percentagem com 2 casas decimais
+        function fmtPct(p){
+            if(!isFinite(p)) return '-';
+            return (Math.round(p*100)/100).toFixed(2) + '%';
+        }
+
+        // TODO: Calcula margem percentual: (venda - custo) / venda × 100
+        function calcMarginPct(venda, custo){
+            venda = toNum(venda); custo = toNum(custo);
+            if(venda <= 0) return null;
+            return ((venda - custo) / venda) * 100;
+        }
+
+        // TODO: Percorre todas as linhas da tabela de Serviços e actualiza as colunas de margem
+        function recalcMargins(){
+            var tbody = document.getElementById('tblServicosBody');
+            if(!tbody) return;
+            var rows = tbody.querySelectorAll('tr');
+            rows.forEach(function(r){
+                var vn = r.querySelector('.venda-normal');
+                var cn = r.querySelector('.custo-normal');
+                var vd = r.querySelector('.venda-drp');
+                var cd = r.querySelector('.custo-drp');
+                var mn = r.querySelector('.margem-normal');
+                var md = r.querySelector('.margem-drp');
+                
+                var mnp = calcMarginPct(vn && vn.value, cn && cn.value);
+                var mdp = calcMarginPct(vd && vd.value, cd && cd.value);
+                
+                if(mn) mn.textContent = (mnp === null) ? '-' : fmtPct(mnp);
+                if(md) md.textContent = (mdp === null) ? '-' : fmtPct(mdp);
+            });
+        }
+
+        // TODO: Adiciona nova linha de serviço à tabela Serviços & Preços e recalcula margens
+        function addService(){
+            var tbody = document.getElementById('tblServicosBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            tr.innerHTML = "" +
+            "<td><input type='text' value='NEW'></td>" +
+            "<td><input type='text' value='Novo Serviço'></td>" +
+            "<td><select><option>Email</option><option>SMS</option><option>Devolução PDFs</option><option>Assinatura digital qualificada</option><option>EDI</option><option>Certificação de contactos</option></select></td>" +
+            "<td class='num'><input type='number' class='venda-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+            "<td class='num'><input type='number' class='custo-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+            "<td class='num kpi'><span class='margem-normal'>-</span></td>" +
+            "<td class='num'><input type='number' class='venda-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+            "<td class='num'><input type='number' class='custo-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+            "<td class='num kpi'><span class='margem-drp'>-</span></td>" +
+            "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            
+            tbody.appendChild(tr);
+            recalcMargins();
+        }
+
+        // TODO: Inicializa o cálculo das margens quando a página carrega (DOMContentLoaded)
+        window.addEventListener('DOMContentLoaded', (event) => {
+            recalcMargins();
+        });
+
+    </script>
+</body>
+</html>
