@@ -620,80 +620,100 @@
                     </div>
                 </div>
 
-                <!-- TODO: SERVICOSDIGITAIS - Painel da aba Serviços digitais com switches inline -->
+                <!-- TODO: SERVICOSDIGITAIS - Painel da aba Serviços digitais com tabela horizontal -->
                 <div id="tab-servicos-digitais" class="tab-panel">
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Email -->
-                    <fieldset><legend>Email</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Email (Sim por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                <div><label>From email</label><input type="text"></div>
-                                <div><label>From name</label><input type="text"></div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset SMS -->
-                    <fieldset><legend>SMS</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline SMS (Sim por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                            <div><label>Provider</label><select><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Emails registados -->
-                    <fieldset><legend>Emails registados</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Emails registados (Sim por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                            <div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Assinaturas de contratos -->
-                    <fieldset><legend>Assinaturas de contratos</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Assinaturas de contratos (Sim por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                            <div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Devolução PDFs -->
-                    <fieldset><legend>Devolução PDFs</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Devolução PDFs (Sim por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                            <div><label>Método</label><select><option>FTP</option><option>SFTP</option><option>Email</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset PDFonTheFly -->
-                    <fieldset><legend>PDFonTheFly</legend>
-                        <!-- TODO: SERVICOSDIGITAIS - Switch inline PDFonTheFly (Sim por defeito) -->
-                        <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Sim</span></div></div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Assinatura digital qualificada -->
-                    <fieldset><legend>Assinatura digital qualificada</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Assinatura digital qualificada (Não por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></div>
-                            <div><label>Provider</label><select><option>DigitalSign</option><option>Outro</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset EDI -->
-                    <fieldset><legend>EDI</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline EDI (Não por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></div>
-                            <div><label>Provider</label><select><option>Cegid</option><option>Outro</option></select></div>
-                        </div>
-                    </fieldset>
-                    <!-- TODO: SERVICOSDIGITAIS - Fieldset Certificação de contactos -->
-                    <fieldset><legend>Certificação de contactos</legend>
-                        <div class="fieldset-grid">
-                            <!-- TODO: SERVICOSDIGITAIS - Switch inline Certificação de contactos (Não por defeito) -->
-                            <div><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></div>
-                            <div><label>Canal</label><select><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>
-                        </div>
-                    </fieldset>
+                    <!-- TODO: SERVICOSDIGITAIS - Nota explicativa sobre serviços digitais -->
+                    <div class="note" style="margin-bottom:12px;">Serviços digitais: cada coluna representa um serviço com suas configurações específicas.</div>
+                    <!-- TODO: SERVICOSDIGITAIS - Card da tabela horizontal -->
+                    <div class="card" style="margin:0">
+                        <!-- TODO: SERVICOSDIGITAIS - Fieldset único -->
+                        <fieldset>
+                            <!-- TODO: SERVICOSDIGITAIS - Cabeçalho da secção -->
+                            <legend>Serviços Digitais</legend>
+                            <!-- TODO: SERVICOSDIGITAIS - Tabela horizontal (cada coluna = um serviço) -->
+                            <table class="table-compact">
+                                <!-- TODO: SERVICOSDIGITAIS - Cabeçalho com nome de cada serviço -->
+                                <thead>
+                                    <tr>
+                                        <th style="width:150px">Email</th>
+                                        <th style="width:150px">SMS</th>
+                                        <th style="width:150px">Emails registados</th>
+                                        <th style="width:180px">Assinaturas de contratos</th>
+                                        <th style="width:150px">Devolução PDFs</th>
+                                        <th style="width:150px">PDFonTheFly</th>
+                                        <th style="width:180px">Assinatura digital qualificada</th>
+                                        <th style="width:120px">EDI</th>
+                                        <th style="width:180px">Certificação de contactos</th>
+                                        <th style="width:120px"></th>
+                                    </tr>
+                                </thead>
+                                <!-- TODO: SERVICOSDIGITAIS - Corpo da tabela com dropdowns e inputs inline -->
+                                <tbody id="servicosDigitaisBody">
+                                    <tr>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Email (From email + From name) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <input type="text" placeholder="From email" style="font-size:12px;">
+                                                <input type="text" placeholder="From name" style="font-size:12px;">
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna SMS (Provider) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Emails registados (Provider) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Assinaturas de contratos (Provider) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Devolução PDFs (Método) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna PDFonTheFly (switch inline Sim/Não) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Assinatura digital qualificada (Provider) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>DigitalSign</option><option>Outro</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna EDI (Provider) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>Cegid</option><option>Outro</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Coluna Certificação de contactos (Canal) -->
+                                        <td style="vertical-align:top;">
+                                            <div style="display:flex; flex-direction:column; gap:8px;">
+                                                <select style="font-size:12px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>
+                                            </div>
+                                        </td>
+                                        <!-- TODO: SERVICOSDIGITAIS - Botão Remover -->
+                                        <td style="vertical-align:top;"><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- TODO: SERVICOSDIGITAIS - Botão para adicionar nova linha -->
+                            <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addServicoDigital()">+ Adicionar Linha</button></div>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <!-- TODO: TABSLIST - Painel da aba Serviços & Preços -->
@@ -737,12 +757,24 @@
                     </div>
                 </div>
 
-                <!-- TODO: TABSLIST - Painel da aba DRP -->
+                <!-- TODO: DRP - Painel da aba DRP com switch inline -->
                 <div id="tab-drp" class="tab-panel">
+                    <!-- TODO: DRP - Fieldset Cobertura -->
                     <fieldset>
                         <legend>Cobertura</legend>
                         <div class="fieldset-grid">
-                            <div><label style="display:inline-flex; align-items:center; gap:6px;"><input type="checkbox" checked> ES tem DRP contratado</label></div>
+                            <div>
+                                <label>ES tem DRP contratado</label>
+                                <!-- TODO: DRP - Switch inline ES tem DRP contratado (Não por defeito) -->
+                                <div class="switch-inline-container">
+                                    <label class="switch-inline">
+                                        <input type="checkbox" onchange="toggleSwitchLabel(this)">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <span class="switch-inline-label">Não</span>
+                                </div>
+                            </div>
+                            <!-- TODO: DRP - Input Notas DRP -->
                             <div><label>Notas DRP</label><input type="text"></div>
                         </div>
                     </fieldset>
@@ -949,6 +981,25 @@
                            "<td><input type='text' placeholder='ex.: Descrição'></td>" +
                            "<td><input type='number' value='0' min='0' step='1'></td>" +
                            "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+            tbody.appendChild(tr);
+        }
+
+        // TODO: SERVICOSDIGITAIS - Adiciona nova linha à tabela de Serviços Digitais
+        function addServicoDigital(){
+            var tbody = document.getElementById('servicosDigitaisBody');
+            if(!tbody) return;
+            var tr = document.createElement('tr');
+            // TODO: SERVICOSDIGITAIS - Nova linha com todas as 9 colunas + botão Remover (com vertical-align:top para alinhamento)
+            tr.innerHTML = "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><input type='text' placeholder='From email' style='font-size:12px;'><input type='text' placeholder='From name' style='font-size:12px;'></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>Mailcooms</option><option>Outro</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>Mailcooms</option><option>Outro</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>FTP</option><option>SFTP</option><option>Email</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>DigitalSign</option><option>Outro</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>Cegid</option><option>Outro</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; flex-direction:column; gap:8px;'><select style='font-size:12px;'><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div></td>" +
+                           "<td style='vertical-align:top;'><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
