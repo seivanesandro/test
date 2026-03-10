@@ -704,8 +704,7 @@
                                             <div style="display:flex; flex-direction:column; gap:8px;">
                                                 <select style="font-size:12px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>
                                             </div>
-                                        </td>
-                                     </tr>
+                                        </td> </tr>
                                 </tbody>
                             </table>
                             <!-- TODO: SERVICOSDIGITAIS - Botões para adicionar e remover serviços -->
@@ -985,23 +984,28 @@
             tbody.appendChild(tr);
         }
 
-        // TODO: SERVICOSDIGITAIS - Lista de serviços disponíveis na ordem de exibição
+        // TODO: SERVICOSDIGITAIS - Lista de serviços disponíveis na ordem ESQUERDA→DIREITA
         var servicosDisponiveis = ['sms', 'emailsreg', 'assinaturas', 'devolucao', 'pdfonthefly', 'assdigital', 'edi', 'certificacao'];
+        var servicosVisiveis = []; // Controla quais serviços estão visíveis
         
-        // TODO: SERVICOSDIGITAIS - Adiciona próxima coluna de serviço (mostra próximo serviço oculto)
+        // TODO: SERVICOSDIGITAIS - Adiciona próxima coluna de serviço (ESQUERDA→DIREITA)
         function addServicoColumn() {
-            // Procura a próxima coluna oculta na ordem
+            // Procura o próximo serviço ainda não visível
             for (var i = 0; i < servicosDisponiveis.length; i++) {
-                var servicoClass = '.col-' + servicosDisponiveis[i];
-                var colunas = document.querySelectorAll(servicoClass);
+                var servico = servicosDisponiveis[i];
                 
-                // Verifica se está oculta (primeiro elemento oculto encontrado)
-                if (colunas.length > 0 && colunas[0].style.display === 'none') {
+                // Se este serviço ainda não está na lista de visíveis
+                if (servicosVisiveis.indexOf(servico) === -1) {
+                    // Adiciona à lista de visíveis
+                    servicosVisiveis.push(servico);
+                    
                     // Mostra todas as células desta coluna (th + todos os td)
+                    var servicoClass = '.col-' + servico;
+                    var colunas = document.querySelectorAll(servicoClass);
                     colunas.forEach(function(col) {
                         col.style.display = '';
                     });
-                    return; // Para após mostrar a primeira coluna oculta
+                    return;
                 }
             }
             
@@ -1009,29 +1013,28 @@
             alert('Todos os serviços já foram adicionados!');
         }
         
-        // TODO: SERVICOSDIGITAIS - Remove última coluna de serviço visível (oculta em ordem reversa)
+        // TODO: SERVICOSDIGITAIS - Remove última coluna de serviço visível (ordem REVERSA)
         function removeServicoColumn() {
-            // Procura a última coluna visível na ordem reversa
-            for (var i = servicosDisponiveis.length - 1; i >= 0; i--) {
-                var servicoClass = '.col-' + servicosDisponiveis[i];
-                var colunas = document.querySelectorAll(servicoClass);
+            // Se há serviços visíveis, remove o último
+            if (servicosVisiveis.length > 0) {
+                // Pega o último serviço da lista de visíveis
+                var ultimoServico = servicosVisiveis.pop();
                 
-                // Verifica se está visível (última coluna visível encontrada)
-                if (colunas.length > 0 && colunas[0].style.display !== 'none') {
-                    // Oculta todas as células desta coluna (th + todos os td)
-                    colunas.forEach(function(col) {
-                        col.style.display = 'none';
-                    });
-                    return; // Para após ocultar a última coluna visível
-                }
+                // Oculta todas as células desta coluna (th + todos os td)
+                var servicoClass = '.col-' + ultimoServico;
+                var colunas = document.querySelectorAll(servicoClass);
+                colunas.forEach(function(col) {
+                    col.style.display = 'none';
+                });
+            } else {
+                // Não há serviços adicionais para remover
+                alert('Não há serviços adicionais para remover!');
             }
-            
-            // Se chegou aqui, não há serviços adicionais para remover (só Email está visível)
-            alert('Não há serviços adicionais para remover!');
         }
         
         // TODO: SERVICOSDIGITAIS - Inicializa: oculta todas as colunas de serviços exceto Email
         document.addEventListener('DOMContentLoaded', function() {
+            servicosVisiveis = []; // Reseta lista de visíveis
             document.querySelectorAll('.col-servico').forEach(function(col) {
                 col.style.display = 'none';
             });
