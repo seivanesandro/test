@@ -348,11 +348,11 @@
                             <label class="switch-label" for="chkImpressao" id="lblImpressao">Com Impressão</label>
                         </div>
                         
-                        <!-- TODO: CARACTERIZAÇÃO - Opções de impressão (Duplex/Simplex/Multilep) escondidas quando switch desligado -->
+                        <!-- TODO: CARACTERIZAÇÃO - Opções de impressão (Duplex/Simplex/Multilep) escondidas quando switch desligado — radio porque só 1 opção pode ser escolhida -->
                         <div id="opcoes-impressao" style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
-                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="checkbox"> Duplex</label>
-                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="checkbox"> Simplex</label>
-                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox"> Multilep</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="tipo-impressao" checked> Duplex</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="tipo-impressao"> Simplex</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="radio" name="tipo-impressao"> Multilep</label>
                         </div>
                     </fieldset>
 
