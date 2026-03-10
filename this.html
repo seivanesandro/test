@@ -589,18 +589,29 @@
 
                 <!-- TODO: TABSLIST - Painel da aba Inserts -->
                 <div id="tab-inserts" class="tab-panel">
-                    <div class="note" style="margin-bottom:12px;">Cada insert inclui: Peça cliente (Sim/Não), Ref Cliente, Ref Interna, Descrição e Peso (g). Permite adicionar, editar e remover.</div>
+                    <!-- TODO: INSERTS - Nota explicativa sobre campos de cada insert com switch inline -->
+                    <div class="note" style="margin-bottom:12px;">Cada insert inclui: Peça cliente (Sim/Não), Ref Cliente, Ref Interna, Descrição e Peso (g).</div>
+                    <!-- TODO: INSERTS - Card da tabela Inserts -->
                     <div class="card" style="margin:0">
                         <h4 style="margin-top:0">Inserts</h4>
+                        <!-- TODO: INSERTS - Tabela de inserts com switch inline -->
                         <table class="table-compact">
+                            <!-- TODO: INSERTS - Cabeçalho da tabela com larguras fixas para cada coluna -->
                             <thead><tr><th style="width:120px">Peça cliente</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:110px">Peso (g)</th><th style="width:150px"></th></tr></thead>
+                            <!-- TODO: INSERTS - Corpo da tabela - cada linha tem switch + 4 inputs + botão Remover -->
                             <tbody id="insertsBody">
                                 <tr>
-                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
+                                    <!-- TODO: INSERTS - Switch inline Peça cliente (Não por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: INSERTS - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex.: INS-001"></td>
+                                    <!-- TODO: INSERTS - Input Ref Interna -->
                                     <td><input type="text" placeholder="ex.: MLL00XXX000123"></td>
+                                    <!-- TODO: INSERTS - Input Descrição -->
                                     <td><input type="text" placeholder="ex.: Folheto promocional"></td>
+                                    <!-- TODO: INSERTS - Input Peso em gramas -->
                                     <td><input type="number" value="5" min="0" step="1"></td>
+                                    <!-- TODO: INSERTS - Botão Remover (sem Editar) -->
                                     <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
                                 </tr>
                             </tbody>
@@ -906,17 +917,18 @@
             tbody.appendChild(tr);
         }
 
-        // TODO: Adiciona nova linha de insert ao tbody de Inserts
+        // TODO: INSERTS - Adiciona nova linha de insert ao tbody de Inserts com switch inline
         function addInsert(){
             var tbody = document.getElementById('insertsBody');
             if(!tbody) return;
             var tr = document.createElement('tr');
-            tr.innerHTML = "<td><select><option>Sim</option><option selected>Não</option></select></td>" +
+            // TODO: INSERTS - Switch inline Peça cliente + 4 inputs + apenas botão Remover (sem Editar)
+            tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
                            "<td><input type='text' placeholder='ex.: INS-001'></td>" +
                            "<td><input type='text' placeholder='ex.: MLL00XXX000123'></td>" +
                            "<td><input type='text' placeholder='ex.: Descrição'></td>" +
                            "<td><input type='number' value='0' min='0' step='1'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-ghost' type='button'>Editar</button><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
