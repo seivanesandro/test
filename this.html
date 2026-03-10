@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -253,7 +252,7 @@
         .switch-inline-container { display: inline-flex; align-items: center; gap: 6px; }
 
 
-        
+
         /* TODO: PAPEIS - Label de texto ao lado do switch mostrando Sim/Não */
         .switch-inline-label { font-size: 12px; font-weight: 600; color: var(--text); user-select: none; min-width: 30px; }
     </style>
@@ -520,42 +519,67 @@
 
                 <!-- TODO: TABSLIST - Painel da aba Envelopes -->
                 <div id="tab-envelopes" class="tab-panel">
-                    <div class="note" style="margin-bottom:12px;">Cada envelope: Tipo (DL/C5/C4/ENCFSC), FSC (Sim/Não), Envelope com logo (Sim/Não), Tipo de envelopagem (Automática/Manual), Ref Cliente, Ref Interna, Descrição + Remover.</div>
+                    <!-- TODO: ENVELOPES - Nota explicativa sobre campos de cada envelope com switches inline -->
+                    <div class="note" style="margin-bottom:12px;">Cada envelope: Tipo (DL/C5/C4/ENCFSC), FSC (Sim/Não), Envelope com logo (Sim/Não), Tipo de envelopagem (Automática/Manual), Ref Cliente, Ref Interna, Descrição.</div>
                     
+                    <!-- TODO: ENVELOPES - Card da tabela Envelopes (Normal) -->
                     <div class="card" style="margin:0; margin-bottom:16px;">
                         <h4 style="margin-top:0">Envelopes (Normal)</h4>
+                        <!-- TODO: ENVELOPES - Tabela de envelopes normais com switches inline -->
                         <table class="table-compact">
+                            <!-- TODO: ENVELOPES - Cabeçalho da tabela com larguras fixas para cada coluna -->
                             <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <!-- TODO: ENVELOPES - Corpo da tabela Normal - cada linha tem select tipo + 3 switches + 3 inputs + botão Remover -->
                             <tbody id="envNormalBody">
                                 <tr>
+                                    <!-- TODO: ENVELOPES - Select mantém-se para Tipo de envelope (DL/C5/C4/ENCFSC) -->
                                     <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
-                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
-                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
-                                    <td><select><option selected>Automática</option><option>Manual</option></select></td>
+                                    <!-- TODO: ENVELOPES - Switch inline FSC (Não por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: ENVELOPES - Switch inline Envelope com logo (Não por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: ENVELOPES - Switch inline Tipo de envelopagem (Automática quando checked por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleEnvelopagemLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Automática</span></div></td>
+                                    <!-- TODO: ENVELOPES - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex.: DL 2 JANELAS"></td>
+                                    <!-- TODO: ENVELOPES - Input Ref Interna -->
                                     <td><input type="text" placeholder="ex.: MEV00CCM00138"></td>
+                                    <!-- TODO: ENVELOPES - Input Descrição -->
                                     <td><input type="text" placeholder="ex.: Envelope DL 2 janelas"></td>
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <!-- TODO: ENVELOPES - Botão Remover (sem Editar) -->
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addEnvelope('envNormalBody')">+ Adicionar Envelope</button></div>
                     </div>
 
+                    <!-- TODO: ENVELOPES - Card da tabela Envelopes (DRP) -->
                     <div class="card" style="margin:0">
                         <h4 style="margin-top:0">Envelopes (DRP)</h4>
+                        <!-- TODO: ENVELOPES - Tabela de envelopes DRP com switches inline -->
                         <table class="table-compact">
+                            <!-- TODO: ENVELOPES - Cabeçalho da tabela DRP (mesmas colunas que Normal) -->
                             <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <!-- TODO: ENVELOPES - Corpo da tabela DRP - switches unchecked (Não = cinzento) por defeito -->
                             <tbody id="envDrpBody">
                                 <tr>
+                                    <!-- TODO: ENVELOPES - Select mantém-se para Tipo de envelope (DL/C5/C4/ENCFSC) -->
                                     <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
-                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
-                                    <td><select><option>Sim</option><option selected>Não</option></select></td>
-                                    <td><select><option selected>Automática</option><option>Manual</option></select></td>
+                                    <!-- TODO: ENVELOPES - Switch inline FSC (Não por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: ENVELOPES - Switch inline Envelope com logo (Não por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <!-- TODO: ENVELOPES - Switch inline Tipo de envelopagem (Automática quando checked por defeito) -->
+                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleEnvelopagemLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Automática</span></div></td>
+                                    <!-- TODO: ENVELOPES - Input Ref Cliente (DRP) -->
                                     <td><input type="text" placeholder="ex.: DL 2 JANELAS (DRP)"></td>
+                                    <!-- TODO: ENVELOPES - Input Ref Interna (DRP) -->
                                     <td><input type="text" placeholder="ex.: MEV00CCM00138_DRP"></td>
+                                    <!-- TODO: ENVELOPES - Input Descrição (DRP) -->
                                     <td><input type="text" placeholder="ex.: Envelope DL 2 janelas (DRP)"></td>
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <!-- TODO: ENVELOPES - Botão Remover (sem Editar) -->
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -577,7 +601,7 @@
                                     <td><input type="text" placeholder="ex.: MLL00XXX000123"></td>
                                     <td><input type="text" placeholder="ex.: Folheto promocional"></td>
                                     <td><input type="number" value="5" min="0" step="1"></td>
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-ghost" type="button">Editar</button><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -857,19 +881,28 @@
             }
         }
 
-        // TODO: Adiciona nova linha de envelope ao tbody indicado (Normal ou DRP)
+        // TODO: ENVELOPES - Toggle do label de texto Automática/Manual para tipo de envelopagem
+        function toggleEnvelopagemLabel(checkbox) {
+            var label = checkbox.closest('.switch-inline-container').querySelector('.switch-inline-label');
+            if (label) {
+                label.textContent = checkbox.checked ? 'Automática' : 'Manual';
+            }
+        }
+
+        // TODO: ENVELOPES - Adiciona nova linha de envelope ao tbody indicado (Normal ou DRP) com switches inline
         function addEnvelope(tbodyId){
             var tbody = document.getElementById(tbodyId);
             if(!tbody) return;
             var tr = document.createElement('tr');
+            // TODO: ENVELOPES - Select tipo envelope mantém-se + 3 switches inline (FSC, Envelope com logo, Tipo envelopagem) + 3 inputs + apenas botão Remover
             tr.innerHTML = "<td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>" +
-                           "<td><select><option selected>Não</option><option>Sim</option></select></td>" +
-                           "<td><select><option selected>Não</option><option>Sim</option></select></td>" +
-                           "<td><select><option selected>Automática</option><option>Manual</option></select></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' checked onchange='toggleEnvelopagemLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Automática</span></div></td>" +
                            "<td><input type='text' placeholder='Ref Cliente'></td>" +
                            "<td><input type='text' placeholder='Ref Interna'></td>" +
                            "<td><input type='text' placeholder='Descrição'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-start; gap:8px; flex-wrap:wrap;'><button class='btn btn-ghost' type='button'>Editar</button><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
