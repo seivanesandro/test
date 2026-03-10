@@ -631,20 +631,20 @@
                             <!-- TODO: SERVICOSDIGITAIS - Cabeçalho da secção -->
                             <legend>Serviços Digitais</legend>
                             <!-- TODO: SERVICOSDIGITAIS - Tabela horizontal (cada coluna = um serviço) -->
-                            <table class="table-compact">
+                            <table class="table-compact" style="width:100%;">
                                 <!-- TODO: SERVICOSDIGITAIS - Cabeçalho com nome de cada serviço -->
                                 <thead>
                                     <tr>
-                                        <th style="width:170px" class="col-email">Email</th>
-                                        <th style="width:150px" class="col-servico col-sms" data-servico="sms">SMS</th>
-                                        <th style="width:150px" class="col-servico col-emailsreg" data-servico="emailsreg">Emails registados</th>
-                                        <th style="width:180px" class="col-servico col-assinaturas" data-servico="assinaturas">Assinaturas de contratos</th>
-                                        <th style="width:150px" class="col-servico col-devolucao" data-servico="devolucao">Devolução PDFs</th>
-                                        <th style="width:150px" class="col-servico col-pdfonthefly" data-servico="pdfonthefly">PDFonTheFly</th>
-                                        <th style="width:180px" class="col-servico col-assdigital" data-servico="assdigital">Assinatura digital qualificada</th>
-                                        <th style="width:120px" class="col-servico col-edi" data-servico="edi">EDI</th>
-                                        <th style="width:180px" class="col-servico col-certificacao" data-servico="certificacao">Certificação de contactos</th>
-                                        <th style="width:120px"></th>
+                                        <th class="col-email">Email</th>
+                                        <th class="col-servico col-sms" data-servico="sms">SMS</th>
+                                        <th class="col-servico col-emailsreg" data-servico="emailsreg">Emails registados</th>
+                                        <th class="col-servico col-assinaturas" data-servico="assinaturas">Assinaturas de contratos</th>
+                                        <th class="col-servico col-devolucao" data-servico="devolucao">Devolução PDFs</th>
+                                        <th class="col-servico col-pdfonthefly" data-servico="pdfonthefly">PDFonTheFly</th>
+                                        <th class="col-servico col-assdigital" data-servico="assdigital">Assinatura digital qualificada</th>
+                                        <th class="col-servico col-edi" data-servico="edi">EDI</th>
+                                        <th class="col-servico col-certificacao" data-servico="certificacao">Certificação de contactos</th>
+                                        <th style="width:80px;"></th>
                                     </tr>
                                 </thead>
                                 <!-- TODO: SERVICOSDIGITAIS - Corpo da tabela com dropdowns e inputs inline -->
@@ -653,32 +653,32 @@
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Email (From email + From name) -->
                                         <td style="vertical-align:top;" class="col-email">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <input type="text" placeholder="From email" style="font-size:12px;">
-                                                <input type="text" placeholder="From name" style="font-size:12px;">
+                                                <input type="text" placeholder="From email" style="font-size:12px; width:155px;">
+                                                <input type="text" placeholder="From name" style="font-size:12px; width:155px;">
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna SMS (Provider) -->
                                         <td style="vertical-align:top;" class="col-servico col-sms" data-servico="sms">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>
+                                                <select style="font-size:12px; width:120px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Emails registados (Provider) -->
                                         <td style="vertical-align:top;" class="col-servico col-emailsreg" data-servico="emailsreg">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>
+                                                <select style="font-size:12px; width:135px;"><option>Mailcooms</option><option>Outro</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Assinaturas de contratos (Provider) -->
                                         <td style="vertical-align:top;" class="col-servico col-assinaturas" data-servico="assinaturas">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>
+                                                <select style="font-size:12px; width:155px;"><option>Mailcooms</option><option>Outro</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Devolução PDFs (Método) -->
                                         <td style="vertical-align:top;" class="col-servico col-devolucao" data-servico="devolucao">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>
+                                                <select style="font-size:12px; width:125px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna PDFonTheFly (switch inline Sim/Não) -->
@@ -690,19 +690,19 @@
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Assinatura digital qualificada (Provider) -->
                                         <td style="vertical-align:top;" class="col-servico col-assdigital" data-servico="assdigital">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>DigitalSign</option><option>Outro</option></select>
+                                                <select style="font-size:12px; width:165px;"><option>DigitalSign</option><option>Outro</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna EDI (Provider) -->
                                         <td style="vertical-align:top;" class="col-servico col-edi" data-servico="edi">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>Cegid</option><option>Outro</option></select>
+                                                <select style="font-size:12px; width:100px;"><option>Cegid</option><option>Outro</option></select>
                                             </div>
                                         </td>
                                         <!-- TODO: SERVICOSDIGITAIS - Coluna Certificação de contactos (Canal) -->
                                         <td style="vertical-align:top;" class="col-servico col-certificacao" data-servico="certificacao">
                                             <div style="display:flex; flex-direction:column; gap:8px;">
-                                                <select style="font-size:12px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>
+                                                <select style="font-size:12px; width:155px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>
                                             </div>
                                         </td> </tr>
                                 </tbody>
@@ -999,11 +999,11 @@
                     // Adiciona à lista de visíveis
                     servicosVisiveis.push(servico);
                     
-                    // Mostra todas as células desta coluna (th + todos os td)
+                    // Mostra todas as células desta coluna (th + todos os td) usando visibility:visible
                     var servicoClass = '.col-' + servico;
                     var colunas = document.querySelectorAll(servicoClass);
                     colunas.forEach(function(col) {
-                        col.style.display = '';
+                        col.style.visibility = 'visible';
                     });
                     return;
                 }
@@ -1020,11 +1020,11 @@
                 // Pega o último serviço da lista de visíveis
                 var ultimoServico = servicosVisiveis.pop();
                 
-                // Oculta todas as células desta coluna (th + todos os td)
+                // Oculta todas as células desta coluna (th + todos os td) usando visibility:collapse
                 var servicoClass = '.col-' + ultimoServico;
                 var colunas = document.querySelectorAll(servicoClass);
                 colunas.forEach(function(col) {
-                    col.style.display = 'none';
+                    col.style.visibility = 'collapse';
                 });
             } else {
                 // Não há serviços adicionais para remover
@@ -1032,11 +1032,11 @@
             }
         }
         
-        // TODO: SERVICOSDIGITAIS - Inicializa: oculta todas as colunas de serviços exceto Email
+        // TODO: SERVICOSDIGITAIS - Inicializa: oculta todas as colunas de serviços exceto Email usando visibility:collapse
         document.addEventListener('DOMContentLoaded', function() {
             servicosVisiveis = []; // Reseta lista de visíveis
             document.querySelectorAll('.col-servico').forEach(function(col) {
-                col.style.display = 'none';
+                col.style.visibility = 'collapse';
             });
         });
 
