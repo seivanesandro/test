@@ -625,8 +625,8 @@
                     <!-- TODO: SERVICOSDIGITAIS - Nota explicativa sobre serviços digitais -->
                     <div class="note" style="margin-bottom:12px;">Selecione um serviço na dropdown abaixo para adicionar suas configurações.</div>
                     
-                    <!-- TODO: SERVICOSDIGITAIS - Card com dropdown de seleção -->
-                    <div class="card" style="margin:0; margin-bottom:16px;">
+                    <!-- TODO: SERVICOSDIGITAIS - Card com dropdown de seleção e serviços adicionados -->
+                    <div class="card" id="servicosDigitaisCard" style="margin:0; margin-bottom:16px;">
                         <fieldset>
                             <legend>Adicionar Serviço Digital</legend>
                             <div style="display:flex; gap:10px; align-items:flex-end;">
@@ -648,10 +648,9 @@
                                 <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+ Adicionar</button>
                             </div>
                         </fieldset>
+                        
+                        <!-- TODO: SERVICOSDIGITAIS - Serviços adicionados aparecem aqui dentro do card -->
                     </div>
-                    
-                    <!-- TODO: SERVICOSDIGITAIS - Container para os fieldsets de serviços adicionados -->
-                    <div id="servicosDigitaisContainer"></div>
                 </div>
 
                 <!-- TODO: TABSLIST - Painel da aba Serviços & Preços -->
@@ -932,17 +931,14 @@
                 return;
             }
             
-            var container = document.getElementById('servicosDigitaisContainer');
+            var cardPrincipal = document.getElementById('servicosDigitaisCard');
             
             // Verifica se o serviço já foi adicionado (previne duplicados)
-            var servicoExistente = container.querySelector('[data-servico-id="' + servicoId + '"]');
+            var servicoExistente = cardPrincipal.querySelector('[data-servico-id="' + servicoId + '"]');
             if (servicoExistente) {
                 alert('Este serviço já se encontra ativo!');
                 return;
             }
-            var card = document.createElement('div');
-            card.className = 'card';
-            card.style.margin = '0 0 16px 0';
             
             var fieldset = document.createElement('fieldset');
             fieldset.setAttribute('data-servico-id', servicoId);
@@ -962,7 +958,7 @@
                 case 'sms':
                     fieldset.innerHTML = '<legend>SMS</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -970,7 +966,7 @@
                 case 'emailsreg':
                     fieldset.innerHTML = '<legend>Emails Registados</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outro</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -978,7 +974,7 @@
                 case 'assinaturas':
                     fieldset.innerHTML = '<legend>Assinaturas de Contratos</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select><option>Mailcooms</option><option>Outro</option></select></div>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outro</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -986,7 +982,7 @@
                 case 'devolucao':
                     fieldset.innerHTML = '<legend>Devolução PDFs</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Método</label><select><option>FTP</option><option>SFTP</option><option>Email</option></select></div>' +
+                        '<div><label>Método</label><select style="max-width:50%"><option>FTP</option><option>SFTP</option><option>Email</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -1002,7 +998,7 @@
                 case 'assdigital':
                     fieldset.innerHTML = '<legend>Assinatura Digital Qualificada</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select><option>DigitalSign</option><option>Outro</option></select></div>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>DigitalSign</option><option>Outro</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -1010,7 +1006,7 @@
                 case 'edi':
                     fieldset.innerHTML = '<legend>EDI</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select><option>Cegid</option><option>Outro</option></select></div>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Cegid</option><option>Outro</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
@@ -1018,24 +1014,26 @@
                 case 'certificacao':
                     fieldset.innerHTML = '<legend>Certificação de Contactos</legend>' +
                         '<div class="fieldset-grid">' +
-                        '<div><label>Canal</label><select><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>' +
+                        '<div><label>Canal</label><select style="max-width:50%"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>' +
                         '</div>' +
                         '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
                     break;
             }
             
-            card.appendChild(fieldset);
-            container.appendChild(card);
+            // Adiciona espaçamento superior ao fieldset (exceto se for o primeiro serviço)
+            fieldset.style.marginTop = '16px';
+            
+            cardPrincipal.appendChild(fieldset);
             
             // Reset da dropdown
             select.value = '';
         }
         
-        // TODO: SERVICOSDIGITAIS - Remove o card/fieldset do serviço
+        // TODO: SERVICOSDIGITAIS - Remove o fieldset do serviço
         function removerServicoFieldset(btn) {
-            var card = btn.closest('.card');
-            if (card) {
-                card.remove();
+            var fieldset = btn.closest('fieldset[data-servico-id]');
+            if (fieldset) {
+                fieldset.remove();
             }
         }
 
