@@ -60,7 +60,7 @@
 
 
         
-        fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px 12px; margin: 0 0 12px; }
+        fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px 12px; margin: 0 0 12px; box-shadow: 3px 3px 6px rgba(0,0,0,0.1); }
         /* TODO: legend mais visível - negrito forte e cor do texto principal em vez de muted */
         legend { padding: 0 6px; font-size: 13px; color: var(--text); font-weight: 500; }
 
@@ -255,6 +255,21 @@
 
         /* TODO: PAPEIS - Label de texto ao lado do switch mostrando Sim/Não */
         .switch-inline-label { font-size: 12px; font-weight: 600; color: var(--text); user-select: none; min-width: 30px; }
+
+        /* TODO: SERVIÇOS DIGITAIS - Estilos para tabela de serviços digitais */
+        #servicosDigitaisRow td { /* TODO: SERVIÇOS DIGITAIS - Células da tabela de serviços digitais */
+            white-space: nowrap;
+            vertical-align: top;
+        }
+        
+        #servicosDigitaisRow td strong { /* TODO: SERVIÇOS DIGITAIS - Títulos dos serviços não quebram linha */
+            white-space: nowrap;
+        }
+        
+        #servicosDigitaisRow td input, /* TODO: SERVIÇOS DIGITAIS - Inputs e selects dos serviços */
+        #servicosDigitaisRow td select {
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -620,36 +635,46 @@
                     </div>
                 </div>
 
-                <!-- TODO: SERVICOSDIGITAIS - Painel da aba Serviços digitais com dropdown seletor -->
+                <!-- TODO: SERVIÇOS DIGITAIS - Painel da aba Serviços digitais com dropdown seletor -->
                 <div id="tab-servicos-digitais" class="tab-panel">
-                    <!-- TODO: SERVICOSDIGITAIS - Nota explicativa sobre serviços digitais -->
-                    <div class="note" style="margin-bottom:12px;">Selecione um serviço na dropdown abaixo para adicionar suas configurações.</div>
+                    <!-- TODO: SERVIÇOS DIGITAIS - Nota explicativa sobre serviços digitais -->
+                    <div class="note" style="margin-bottom:12px;">
+                        Selecione um serviço na dropdown abaixo para adicionar e configurar.
+                    </div>
                     
-                    <!-- TODO: SERVICOSDIGITAIS - Card com dropdown de seleção e serviços adicionados -->
-                    <div class="card" id="servicosDigitaisCard" style="margin:0; margin-bottom:16px;">
-                        <fieldset>
-                            <legend>Adicionar Serviço Digital</legend>
-                            <div style="display:flex; gap:10px; align-items:flex-end;">
-                                <div style="flex:1; max-width:300px;">
-                                    <label>Selecione o serviço</label>
-                                    <select id="selectServicoDigital" style="width:100%;">
-                                        <option value="">-- Escolha um serviço --</option>
-                                        <option value="email">Email</option>
-                                        <option value="sms">SMS</option>
-                                        <option value="emailsreg">Emails Registados</option>
-                                        <option value="assinaturas">Assinaturas de Contratos</option>
-                                        <option value="devolucao">Devolução PDFs</option>
-                                        <option value="pdfonthefly">PDFonTheFly</option>
-                                        <option value="assdigital">Assinatura Digital Qualificada</option>
-                                        <option value="edi">EDI</option>
-                                        <option value="certificacao">Certificação de Contactos</option>
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+ Adicionar</button>
-                            </div>
-                        </fieldset>
-                        
-                        <!-- TODO: SERVICOSDIGITAIS - Serviços adicionados aparecem aqui dentro do card -->
+                    <!-- TODO: SERVIÇOS DIGITAIS - Card com tabela de serviços digitais no estilo da aplicação -->
+                    <div class="card" style="margin:0">
+                        <!-- TODO: SERVIÇOS DIGITAIS - Título da secção -->
+                        <h4 style="margin-top:0">Serviços Digitais</h4>
+                        <!-- TODO: SERVIÇOS DIGITAIS - Dropdown de seleção e botões de ação -->
+                        <div class="actions-row" style="margin-bottom:12px;">
+                            <!-- TODO: SERVIÇOS DIGITAIS - Select com lista de serviços disponíveis -->
+                            <select id="selectServicoDigital" style="max-width:300px;">
+                                <option value="">-- Escolha um serviço --</option>
+                                <option value="email">Email</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Email -->
+                                <option value="sms">SMS</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção SMS -->
+                                <option value="emailsreg">Emails Registados</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Emails Registados -->
+                                <option value="assinaturas">Assinaturas de Contratos</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinaturas -->
+                                <option value="devolucao">Devolução PDFs</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Devolução PDFs -->
+                                <option value="pdfonthefly">PDFonTheFly</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção PDFonTheFly -->
+                                <option value="assdigital">Assinatura Digital Qualificada</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinatura Digital -->
+                                <option value="edi">EDI</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção EDI -->
+                                <option value="certificacao">Certificação de Contactos</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Certificação -->
+                            </select>
+                            <!-- TODO: SERVIÇOS DIGITAIS - Botão para adicionar serviço selecionado -->
+                            <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+ Adicionar Serviço</button>
+                            <!-- TODO: SERVIÇOS DIGITAIS - Botão para remover último serviço adicionado -->
+                            <button class="btn btn-danger" type="button" onclick="removerUltimoServico()">Remover</button>
+                        </div>
+                        <!-- TODO: SERVIÇOS DIGITAIS - Tabela compacta que contém os serviços adicionados -->
+                        <table class="table-compact">
+                            <tbody>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Linha única onde serviços são adicionados como células lado a lado -->
+                                <tr id="servicosDigitaisRow">
+                                    <!-- TODO: SERVIÇOS DIGITAIS - Serviços serão adicionados aqui como células (td) dinamicamente -->
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -921,119 +946,109 @@
             tbody.appendChild(tr);
         }
 
-        // TODO: SERVICOSDIGITAIS - Adiciona fieldset de serviço conforme seleção da dropdown
+        // TODO: SERVIÇOS DIGITAIS - Adiciona serviço como célula na tabela
         function adicionarServicoDigital() {
+            // TODO: SERVIÇOS DIGITAIS - Obtém elemento select da dropdown
             var select = document.getElementById('selectServicoDigital');
+            // TODO: SERVIÇOS DIGITAIS - Obtém ID do serviço selecionado
             var servicoId = select.value;
             
+            // TODO: SERVIÇOS DIGITAIS - Valida se algum serviço foi selecionado
             if (!servicoId) {
                 alert('Por favor, selecione um serviço!');
                 return;
             }
             
-            var cardPrincipal = document.getElementById('servicosDigitaisCard');
+            // TODO: SERVIÇOS DIGITAIS - Obtém linha da tabela onde serviços são adicionados
+            var row = document.getElementById('servicosDigitaisRow');
             
-            // Verifica se o serviço já foi adicionado (previne duplicados)
-            var servicoExistente = cardPrincipal.querySelector('[data-servico-id="' + servicoId + '"]');
+            // TODO: SERVIÇOS DIGITAIS - Verifica se o serviço já foi adicionado (previne duplicados)
+            var servicoExistente = row.querySelector('[data-servico-id="' + servicoId + '"]');
             if (servicoExistente) {
                 alert('Este serviço já se encontra ativo!');
                 return;
             }
             
-            var fieldset = document.createElement('fieldset');
-            fieldset.setAttribute('data-servico-id', servicoId);
-            var conteudo = '';
+            // TODO: SERVIÇOS DIGITAIS - Cria nova célula (td) para o serviço
+            var td = document.createElement('td');
+            // TODO: SERVIÇOS DIGITAIS - Define atributo data-servico-id para identificação
+            td.setAttribute('data-servico-id', servicoId);
+            // TODO: SERVIÇOS DIGITAIS - Define estilos CSS da célula (larguras e padding)
+            td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:150px; max-width:200px;';
             
-            // Define conteúdo conforme o serviço escolhido
+            // TODO: SERVIÇOS DIGITAIS - Define conteúdo conforme o serviço escolhido
             switch(servicoId) {
-                case 'email':
-                    fieldset.innerHTML = '<legend>Email</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>From email</label><input type="text" placeholder="exemplo@email.com"></div>' +
-                        '<div><label>From name</label><input type="text" placeholder="Nome do remetente"></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'email': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Email
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Email</strong>' +
+                    '<div style="display: flex; flex-direction:column; gap: 0.5rem;">'+
+                    '<input type="text" placeholder="From email" style="margin-bottom:4px;width:100%;font-size:12px;">' +
+                    '<input type="text" placeholder="From name" style="width:100%;font-size:12px;"> </div>';
                     break;
                     
-                case 'sms':
-                    fieldset.innerHTML = '<legend>SMS</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select style="max-width:50%"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'sms': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço SMS
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">SMS</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>';
                     break;
                     
-                case 'emailsreg':
-                    fieldset.innerHTML = '<legend>Emails Registados</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outro</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'emailsreg': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Emails Registados
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Emails Registados</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>';
                     break;
                     
-                case 'assinaturas':
-                    fieldset.innerHTML = '<legend>Assinaturas de Contratos</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outro</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'assinaturas': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Assinaturas de Contratos
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Assinaturas de Contratos</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>';
                     break;
                     
-                case 'devolucao':
-                    fieldset.innerHTML = '<legend>Devolução PDFs</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Método</label><select style="max-width:50%"><option>FTP</option><option>SFTP</option><option>Email</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'devolucao': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Devolução de PDFs
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Devolução de PDFs</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>';
                     break;
                     
-                case 'pdfonthefly':
-                    fieldset.innerHTML = '<legend>PDFonTheFly</legend>' +
-                        '<div style="padding: 10px 0;">' +
-                        '<label style="font-weight: 500; color: #28a745;">✓ Ativado</label>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'pdfonthefly': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço PDFonTheFly (apenas status ativo)
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">PDFonTheFly</strong>' +
+                        '<div style="display:flex;align-items:center;gap:4px;"><span style="color:#28a745;font-size:16px;font-weight:bold;">✓</span><span style="font-size:12px;">ativo</span></div>';
                     break;
                     
-                case 'assdigital':
-                    fieldset.innerHTML = '<legend>Assinatura Digital Qualificada</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select style="max-width:50%"><option>DigitalSign</option><option>Outro</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'assdigital': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Assinatura Digital Qualificada (célula maior)
+                    td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:180px; max-width:220px;';
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Assinatura Digital Qualificada</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>DigitalSign</option><option>Outro</option></select>';
                     break;
                     
-                case 'edi':
-                    fieldset.innerHTML = '<legend>EDI</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Provider</label><select style="max-width:50%"><option>Cegid</option><option>Outro</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'edi': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço EDI
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">EDI</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>Cegid</option><option>Outro</option></select>';
                     break;
                     
-                case 'certificacao':
-                    fieldset.innerHTML = '<legend>Certificação de Contactos</legend>' +
-                        '<div class="fieldset-grid">' +
-                        '<div><label>Canal</label><select style="max-width:50%"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select></div>' +
-                        '</div>' +
-                        '<div class="actions-row"><button class="btn btn-danger" type="button" onclick="removerServicoFieldset(this)">Remover</button></div>';
+                case 'certificacao': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Certificação de Contactos (célula maior)
+                    td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:170px; max-width:210px;';
+                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Certificação de Contactos</strong>' +
+                        '<select style="width:100%;font-size:12px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>';
                     break;
             }
             
-            // Adiciona espaçamento superior ao fieldset (exceto se for o primeiro serviço)
-            fieldset.style.marginTop = '16px';
+            // TODO: SERVIÇOS DIGITAIS - Adiciona célula (td) criada à linha da tabela
+            row.appendChild(td);
             
-            cardPrincipal.appendChild(fieldset);
-            
-            // Reset da dropdown
+            // TODO: SERVIÇOS DIGITAIS - Faz reset da dropdown para estado inicial (-- Escolha um serviço --)
             select.value = '';
         }
         
-        // TODO: SERVICOSDIGITAIS - Remove o fieldset do serviço
-        function removerServicoFieldset(btn) {
-            var fieldset = btn.closest('fieldset[data-servico-id]');
-            if (fieldset) {
-                fieldset.remove();
+        // TODO: SERVIÇOS DIGITAIS - Remove o último serviço adicionado
+        function removerUltimoServico() {
+            // TODO: SERVIÇOS DIGITAIS - Obtém linha da tabela de serviços
+            var row = document.getElementById('servicosDigitaisRow');
+            // TODO: SERVIÇOS DIGITAIS - Obtém última célula (último serviço adicionado)
+            var ultimaCelula = row.lastElementChild;
+            
+            // TODO: SERVIÇOS DIGITAIS - Verifica se existe alguma célula para remover
+            if (ultimaCelula) {
+                // TODO: SERVIÇOS DIGITAIS - Remove última célula da linha
+                row.removeChild(ultimaCelula);
+            } else {
+                // TODO: SERVIÇOS DIGITAIS - Avisa que não há serviços para remover
+                alert('Não há serviços para remover!');
             }
         }
 
@@ -1106,3 +1121,4 @@
     </script>
 </body>
 </html>
+
