@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang='pt'>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <title>Produções</title>
+    <link rel='stylesheet' href='theme.css' />
+</head>
+
+<body>
+    <div class='header'>
+        <div class='title'>ContiU <strong>Protótipo ES</strong></div>
+        <div class='user'>Sessão: <strong>Utilizador AD (mock)</strong></div>
+    </div>
+    <div class='app'>
+        <aside class='sidebar'>
+            <a href='producao_list.html' class='active'>Produções</a>
+            <a href='producao_es_editor.html' class=''>Produção ES</a>
+        </aside>
+        <main class='content'>
+            <div class='breadcrumbs'>Produção / Produções</div>
+            <div class='card'>
+                <div
+                    style='display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap'>
+                    <div>
+                        <h2 style='margin:0'>Produções</h2>
+                        <div class='small'>Se vieres de uma ES (ex.: <span class='badge'>es-232</span>) filtra
+                            automaticamente por ES.</div>
+                    </div>
+                    <div class='actions-row' style='margin-top:0'>
+                        <a class='badge' href='producao_es_pesquisa.html'>ES Pesquisa</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='card'>
+                <h3 style='margin-top:0'>Pesquisa de Produções</h3>
+                <div class='grid'>
+                    <div><label>Ambiente</label>
+                        <select id='fAmbiente'>
+                            <option value=''>Todos</option>
+                            <option>Qualidade</option>
+                            <option>Desenvolvimento</option>
+                            <option>Produção</option>
+                        </select>
+                    </div>
+                    <div><label>Sistema (quem/departamento)</label><input id='fSistema' type='text'
+                            placeholder='ex.: SGFI / Produção'></div>
+                    <div><label>Origem</label>
+                        <select id='fOrigem'>
+                            <option value=''>Todas</option>
+                            <option>FTP Contisystems</option>
+                            <option>WEBAPI1</option>
+                            <option>WEBAPI2</option>
+                        </select>
+                    </div>
+                    <div><label>Detalhe origem</label><input id='fOrigDet' type='text'
+                            placeholder='ex.: FTR_*.csv / requestId'></div>
+
+                    <div><label>Cliente</label><input id='fCliente' type='text' placeholder='ex.: UNIVERSO'></div>
+                    <div><label>ES</label><input id='fES' type='text' placeholder='ex.: 232'></div>
+                    <div><label>Versão</label><input id='fVersao' type='text' placeholder='ex.: 377'></div>
+                    <div><label>Atividade</label>
+                        <select id='fAtividade'>
+                            <option value=''>Todas</option>
+                            <option>SMS</option>
+                            <option>Impressão</option>
+                            <option>Envelopagem</option>
+                            <option>Geração PDF</option>
+                        </select>
+                    </div>
+                    <div><label>Serviço</label><input id='fServico' type='text'
+                            placeholder='ex.: EXTRACTOS / Geração PDF'></div>
+                    <div><label>Entre datas</label>
+                        <div style='display:flex; gap:8px;'><input id='fIni' type='date'><input id='fFim' type='date'>
+                        </div>
+                    </div>
+                    <div><label>Estado</label><select id='fEstado'>
+                            <option value=''>Todos</option>
+                            <option>Concluída</option>
+                            <option>Em curso</option>
+                            <option>Cancelada</option>
+                        </select></div>
+                    <div><label>Canal/Expedição</label><select id='fCanal'>
+                            <option value=''>Todos</option>
+                            <option>CTT</option>
+                            <option>PGM</option>
+                            <option>Interno</option>
+                            <option>Digital</option>
+                        </select></div>
+                    <div><label>ID Produção</label><input id='fProdId' type='text' placeholder='ex.: PRD-000510'></div>
+                    <div><label>Faturação</label>
+                        <select id='fFat'>
+                            <option value=''>Todas</option>
+                            <option value='enviado'>Enviado</option>
+                            <option value='nao'>Não enviado</option>
+                            <option value='nao_faturar'>Não faturar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='actions-row'>
+                    <button class='btn btn-ghost' type='button' onclick='limparFiltros()'>Limpar</button>
+                    <button class='btn btn-primary' type='button' onclick='render()'>Pesquisar</button>
+                </div>
+            </div>
+
+            <div class='card'>
+                <div style='display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap'>
+                    <h3 style='margin:0'>Resultados</h3>
+                    <div class='small'>Total: <span id='count'>0</span></div>
+                </div>
+                <div style='overflow:auto'>
+                    <table class='table-compact'>
+                        <thead>
+                            <tr>
+                                <th>ID Produção</th>
+                                <th>Data</th>
+                                <th>Ambiente</th>
+                                <th>Sistema</th>
+                                <th>Origem</th>
+                                <th>Detalhe origem</th>
+                                <th>Cliente</th>
+                                <th>ES</th>
+                                <th>Versão</th>
+                                <th>Atividade</th>
+                                <th>Serviço</th>
+                                <th>Canal</th>
+                                <th class='num'>Quantidade</th>
+                                <th>Estado</th>
+                                <th>Faturação</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id='rows'></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Dataset mock
+        // Nota: Impressão e Envelopagem partilham o mesmo ID (PRD-000510).
+        var prods = [
+            { id: 'PRD-000500', data: '2026-03-07', ambiente: 'Produção', sistema: 'Unicks / CCM', origem: 'WEBAPI2', origemDet: 'requestId=9f31a', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'SMS', servico: 'Envio SMS', canal: 'Digital', qtd: 8900, unidade: 'SMS', estado: 'Concluída', faturacao: 'enviado' },
+            { id: 'PRD-000510', data: '2026-03-06', ambiente: 'Produção', sistema: 'SGFI / Produção', origem: 'FTP Contisystems', origemDet: 'FTR_Diversos_stp2026020022_12022026.csv', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Impressão', servico: 'EXTRACTOS SONAE FS', canal: 'Interno', qtd: 12500, unidade: 'páginas', estado: 'Concluída', faturacao: 'nao' },
+            { id: 'PRD-000510', data: '2026-03-06', ambiente: 'Produção', sistema: 'SGFI / Expedição', origem: 'FTP Contisystems', origemDet: 'FTR_Diversos_stp2026020022_12022026.csv', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Envelopagem', servico: 'EXTRACTOS SONAE FS', canal: 'CTT', qtd: 12500, unidade: 'envelopes', estado: 'Concluída', faturacao: 'enviado' },
+            { id: 'PRD-000411', data: '2026-02-28', ambiente: 'Qualidade', sistema: 'DOSWebAPI / QA', origem: 'WEBAPI1', origemDet: 'statementId=120045', cliente: 'MED&CR', es: '566', versao: '12', atividade: 'Impressão', servico: 'CRT ANGOLA PLATINIUM MAIS VIP', canal: 'Interno', qtd: 10, unidade: 'cartões', estado: 'Em curso', faturacao: 'nao' },
+            { id: 'PRD-000322', data: '2026-02-20', ambiente: 'Desenvolvimento', sistema: 'DevOps / SWE', origem: 'WEBAPI2', origemDet: 'pipeline-Build-421', cliente: 'MAPFRE SEGUROS GERAIS SA', es: '558', versao: '41', atividade: 'Envelopagem', servico: 'CARTAS VERDES', canal: 'PGM', qtd: 10000, unidade: 'envelopes', estado: 'Concluída', faturacao: 'nao_faturar' },
+            { id: 'PRD-000700', data: '2026-03-05', ambiente: 'Produção', sistema: 'Batch Producer / CCM', origem: 'WEBAPI2', origemDet: 'jobId=BP-7781', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Geração PDF', servico: 'Geração PDF', canal: 'Digital', qtd: 1100000, unidade: 'documentos', estado: 'Concluída', faturacao: 'enviado' }
+        ];
+
+        function qs(name) { return new URLSearchParams(window.location.search).get(name); }
+        function norm(s) { return (s || '').toString().toLowerCase().trim(); }
+        function between(d, ini, fim) { if (!d) return true; if (ini && d < ini) return false; if (fim && d > fim) return false; return true; }
+
+        function applyFilters(list) {
+            var fAmb = norm(document.getElementById('fAmbiente').value);
+            var fSis = norm(document.getElementById('fSistema').value);
+            var fOrg = norm(document.getElementById('fOrigem').value);
+            var fOrgDet = norm(document.getElementById('fOrigDet').value);
+
+            var fCliente = norm(document.getElementById('fCliente').value);
+            var fES = norm(document.getElementById('fES').value);
+            var fVersao = norm(document.getElementById('fVersao').value);
+            var fAtiv = norm(document.getElementById('fAtividade').value);
+            var fServico = norm(document.getElementById('fServico').value);
+            var fIni = document.getElementById('fIni').value;
+            var fFim = document.getElementById('fFim').value;
+            var fEstado = norm(document.getElementById('fEstado').value);
+            var fCanal = norm(document.getElementById('fCanal').value);
+            var fProdId = norm(document.getElementById('fProdId').value);
+            var fFat = document.getElementById('fFat').value;
+
+            return list.filter(function (x) {
+                if (fAmb && norm(x.ambiente) !== fAmb) return false;
+                if (fSis && norm(x.sistema).indexOf(fSis) === -1) return false;
+                if (fOrg && norm(x.origem) !== fOrg) return false;
+                if (fOrgDet && norm(x.origemDet).indexOf(fOrgDet) === -1) return false;
+
+                if (fCliente && norm(x.cliente).indexOf(fCliente) === -1) return false;
+                if (fES && norm(x.es) !== fES) return false;
+                if (fVersao && norm(x.versao) !== fVersao) return false;
+                if (fAtiv && norm(x.atividade) !== fAtiv) return false;
+                if (fServico && norm(x.servico).indexOf(fServico) === -1) return false;
+                if (fEstado && norm(x.estado) !== fEstado) return false;
+                if (fCanal && norm(x.canal) !== fCanal) return false;
+                if (fProdId && norm(x.id).indexOf(fProdId) === -1) return false;
+                if (fFat && x.faturacao !== fFat) return false;
+                if (!between(x.data, fIni, fFim)) return false;
+                return true;
+            });
+        }
+
+        function badgeFat(x) {
+            if (x.faturacao === 'enviado') return "<span class='badge ok'>Enviado</span>";
+            if (x.faturacao === 'nao_faturar') return "<span class='badge off'>Não faturar</span>";
+            return "<span class='badge warn'>Não enviado</span>";
+        }
+
+        function actionButtons(idx) {
+            var x = prods[idx];
+            if (x.faturacao === 'enviado') {
+                return "<button class='btn btn-disabled' type='button' disabled>Já enviado</button>";
+            }
+            if (x.faturacao === 'nao_faturar') {
+                return "<button class='btn btn-disabled' type='button' disabled>Não faturar</button>";
+            }
+            return "<div style='display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap;'>" +
+                "<button class='btn btn-primary' type='button' onclick='enviarFat(" + idx + ")'>Enviar p/ faturação</button>" +
+                "<button class='btn btn-ghost' type='button' onclick='marcarNaoFaturar(" + idx + ")'>Não faturar</button>" +
+                "</div>";
+        }
+
+        function fmtQty(x) {
+            var n = String(x.qtd || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            return n + ' ' + (x.unidade || '');
+        }
+
+        function render() {
+            var rows = document.getElementById('rows');
+            rows.innerHTML = '';
+
+            var list = prods.slice().sort(function (a, b) { return (a.data < b.data) ? 1 : (a.data > b.data ? -1 : 0); });
+            list = applyFilters(list);
+            document.getElementById('count').textContent = list.length;
+
+            list.forEach(function (x) {
+                var idx = prods.indexOf(x);
+                var tr = document.createElement('tr');
+                var esLink = "<a class='badge' href='producao_es_editor.html?es=" + x.es + "'>" + x.es + "</a>";
+                var detLink = "<a class='badge' href='producao_detail.html?id=" + encodeURIComponent(x.id) + "&atividade=" + encodeURIComponent(x.atividade) + "'>Detalhe</a>";
+                tr.innerHTML = "" +
+                    "<td>" + x.id + "</td>" +
+                    "<td>" + x.data + "</td>" +
+                    "<td>" + x.ambiente + "</td>" +
+                    "<td>" + x.sistema + "</td>" +
+                    "<td>" + x.origem + "</td>" +
+                    "<td>" + x.origemDet + "</td>" +
+                    "<td>" + x.cliente + "</td>" +
+                    "<td>" + esLink + "</td>" +
+                    "<td>" + x.versao + "</td>" +
+                    "<td>" + x.atividade + "</td>" +
+                    "<td>" + x.servico + "</td>" +
+                    "<td>" + x.canal + "</td>" +
+                    "<td class='num'>" + fmtQty(x) + "</td>" +
+                    "<td>" + x.estado + "</td>" +
+                    "<td>" + badgeFat(x) + "</td>" +
+                    "<td style='white-space:nowrap; text-align:right'>" + detLink + " " + actionButtons(idx) + "</td>";
+                rows.appendChild(tr);
+            });
+        }
+
+        function enviarFat(idx) {
+            if (idx < 0) return;
+            prods[idx].faturacao = 'enviado';
+            render();
+        }
+
+        function marcarNaoFaturar(idx) {
+            if (idx < 0) return;
+            prods[idx].faturacao = 'nao_faturar';
+            render();
+        }
+
+        function limparFiltros() {
+            ['fSistema', 'fOrigDet', 'fCliente', 'fES', 'fVersao', 'fServico', 'fProdId'].forEach(function (id) { document.getElementById(id).value = ''; });
+            ['fAmbiente', 'fOrigem', 'fAtividade', 'fEstado', 'fCanal', 'fFat'].forEach(function (id) { document.getElementById(id).value = ''; });
+            document.getElementById('fIni').value = '';
+            document.getElementById('fFim').value = '';
+            var es = qs('es');
+            if (es) document.getElementById('fES').value = es;
+            render();
+        }
+
+        (function init() {
+            var es = qs('es');
+            if (es) { document.getElementById('fES').value = es; }
+            render();
+        })();
+    </script>
+</body>
+
+</html>
