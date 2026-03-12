@@ -1,0 +1,267 @@
+<!-- product_detail.html -->
+<!doctype html>
+<html lang='pt'>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <title>Detalhe Produção</title>
+    <link rel='stylesheet' href='theme.css' />
+</head>
+
+<body>
+    <div class='header'>
+        <div class='title'>ContiU <strong>Protótipo ES</strong></div>
+        <div class='user'>Sessão: <strong>Utilizador AD (mock)</strong></div>
+    </div>
+    <div class='app'>
+        <aside class='sidebar'>
+            <!-- <a href='index.html' class='active'>Home</a>
+            <a href='login.html' class=''>Login</a> -->
+            <a href='producao_es_pesquisa.html' class=''>ES Pesquisa</a>
+            <a href='producao_list.html' class=''>Produção</a>
+            <a href='producao_es_editor.html' class=''>Produção ES</a>
+        </aside>
+        <main class='content'>
+            <div class='breadcrumbs'>Produção / Produções / Detalhe</div>
+            <div class='card'>
+                <div
+                    style='display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap'>
+                    <div>
+                        <h2 style='margin:0'>Detalhe da Produção</h2>
+                        <div class='small'>Visão consolidada: identificação, origem, quantidades, faturação e
+                            "timeline".</div>
+                    </div>
+                    <div class='actions-row' style='margin-top:0'>
+                        <a class='badge' href='producao_list.html'>Voltar às Produções</a>
+                    </div>
+                </div>
+            </div>
+            <div class='card' id='summaryCard'>
+                <h3 style='margin-top:0'>Resumo</h3>
+                <div class='grid'>
+                    <div>
+                        <div class='small'>ID Produção</div>
+                        <div class='kpi' id='d_id'>-</div>
+                    </div>
+                    <div>
+                        <div class='small'>Estado</div>
+                        <div id='d_estado'>-</div>
+                    </div>
+                    <div>
+                        <div class='small'>Faturação</div>
+                        <div id='d_fat'>-</div>
+                    </div>
+                    <div>
+                        <div class='small'>Ambiente</div>
+                        <div class='kpi' id='d_amb'>-</div>
+                    </div>
+                </div>
+                <div class='actions-row' id='d_actions'></div>
+            </div>
+            <div class='grid'>
+                <div class='card'>
+                    <h3 style='margin-top:0'>Identificação</h3>
+                    <table class='table-compact'>
+                        <tbody>
+                            <tr>
+                                <th style='width:100px'>Cliente</th>
+                                <td id='d_cliente'>-</td>
+                            </tr>
+                            <tr>
+                                <th>ES</th>
+                                <td id='d_es'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Versão</th>
+                                <td id='d_versao'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Atividade</th>
+                                <td id='d_atividade'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Serviço</th>
+                                <td id='d_servico'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Canal/Expedição</th>
+                                <td id='d_canal'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Sistema (quem/dept)</th>
+                                <td id='d_sistema'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Data</th>
+                                <td id='d_data'>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class='card'>
+                    <h3 style='margin-top:0'>Origem</h3>
+                    <table class='table-compact'>
+                        <tbody>
+                            <tr>
+                                <th style='width:100px'>Origem</th>
+                                <td id='d_origem'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Detalhe origem</th>
+                                <td id='d_origemDet'>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class='note' style='margin-top:10px;'>No caso de <strong>FTP Contisystems</strong>, o detalhe
+                        deve guardar o <strong>nome do ficheiro</strong> para rastreio.</div>
+                </div>
+                <div class='card'>
+                    <h3 style='margin-top:0'>Quantidades</h3>
+                    <table class='table-compact'>
+                        <tbody>
+                            <tr>
+                                <th style='width:100px'>Quantidade</th>
+                                <td id='d_qtd'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Unidade</th>
+                                <td id='d_unidade'>-</td>
+                            </tr>
+                            <tr>
+                                <th>Observações</th>
+                                <td><span class='small'>Sugestão: aqui cabem contadores de erro/recuperações (ex.:
+                                        emails falhados, reprints, devoluções).</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class='card'>
+                <h3 style='margin-top:0'>Timeline (mock)</h3>
+                <table class='table-compact'>
+                    <thead>
+                        <tr>
+                            <th>Marco</th>
+                            <th>Quando</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody id='d_timeline'>
+                        <tr>
+                            <td>Recebido</td>
+                            <td>-</td>
+                            <td class='small'>Origem (FTP/WEBAPI) validada.</td>
+                        </tr>
+                        <tr>
+                            <td>Produzido</td>
+                            <td>-</td>
+                            <td class='small'>Artefactos gerados (PDF/PS/AFP/etc.).</td>
+                        </tr>
+                        <tr>
+                            <td>Expedido/Enviado</td>
+                            <td>-</td>
+                            <td class='small'>CTT/PGM/Interno/Digital.</td>
+                        </tr>
+                        <tr>
+                            <td>Faturação</td>
+                            <td>-</td>
+                            <td class='small'>Enviado/Não enviado/Não faturar.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='card'>
+                <h3 style='margin-top:0'>Artefactos / Anexos (mock)</h3>
+                <div class='small'>Sugestão de ecrã: lista de ficheiros gerados/relatórios (ex.: PDF final, report de
+                    envios, logs, manifestos CTT, ficheiro de integração faturação).</div>
+                <table class='table-compact'>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Nome</th>
+                            <th>Disponível</th>
+                        </tr>
+                    </thead>
+                    <tbody id='d_files'>
+                        <tr>
+                            <td>Report</td>
+                            <td>report_envios.csv</td>
+                            <td><span class='badge'>Mock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Log</td>
+                            <td>process_log.txt</td>
+                            <td><span class='badge'>Mock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Integração</td>
+                            <td>billing_payload.json</td>
+                            <td><span class='badge'>Mock</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mesmo dataset da lista (duplicado em mock para simplificar o ZIP)
+        var prods = [
+            { id: 'PRD-000500', data: '2026-03-07', ambiente: 'Produção', sistema: 'Unicks / CCM', origem: 'WEBAPI2', origemDet: 'requestId=9f31a', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'SMS', servico: 'Envio SMS', canal: 'Digital', qtd: 8900, unidade: 'SMS', estado: 'Concluída', faturacao: 'enviado' },
+            { id: 'PRD-000510', data: '2026-03-06', ambiente: 'Produção', sistema: 'SGFI / Produção', origem: 'FTP Contisystems', origemDet: 'FTR_Diversos_stp2026020022_12022026.csv', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Impressão', servico: 'EXTRACTOS SONAE FS', canal: 'Interno', qtd: 12500, unidade: 'páginas', estado: 'Concluída', faturacao: 'nao' },
+            { id: 'PRD-000510', data: '2026-03-06', ambiente: 'Produção', sistema: 'SGFI / Expedição', origem: 'FTP Contisystems', origemDet: 'FTR_Diversos_stp2026020022_12022026.csv', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Envelopagem', servico: 'EXTRACTOS SONAE FS', canal: 'CTT', qtd: 12500, unidade: 'envelopes', estado: 'Concluída', faturacao: 'enviado' },
+            { id: 'PRD-000411', data: '2026-02-28', ambiente: 'Qualidade', sistema: 'DOSWebAPI / QA', origem: 'WEBAPI1', origemDet: 'statementId=120045', cliente: 'MED&CR', es: '566', versao: '12', atividade: 'Impressão', servico: 'CRT ANGOLA PLATINIUM MAIS VIP', canal: 'Interno', qtd: 10, unidade: 'cartões', estado: 'Em curso', faturacao: 'nao' },
+            { id: 'PRD-000322', data: '2026-02-20', ambiente: 'Desenvolvimento', sistema: 'DevOps / SWE', origem: 'WEBAPI2', origemDet: 'pipeline-Build-421', cliente: 'MAPFRE SEGUROS GERAIS SA', es: '558', versao: '41', atividade: 'Envelopagem', servico: 'CARTAS VERDES', canal: 'PGM', qtd: 10000, unidade: 'envelopes', estado: 'Concluída', faturacao: 'nao_faturar' },
+            { id: 'PRD-000700', data: '2026-03-05', ambiente: 'Produção', sistema: 'Batch Producer / CCM', origem: 'WEBAPI2', origemDet: 'jobId=BP-7781', cliente: 'UNIVERSO, IME, S.A', es: '232', versao: '377', atividade: 'Geração PDF', servico: 'Geração PDF', canal: 'Digital', qtd: 1100000, unidade: 'documentos', estado: 'Concluída', faturacao: 'enviado' }
+        ];
+
+        function qs(name) { return new URLSearchParams(window.location.search).get(name); }
+        function fmtQty(x) { var n = String(x.qtd || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return n + ' ' + (x.unidade || ''); }
+        function fatBadge(f) {
+            if (f === 'enviado') return "<span class='badge ok'>Enviado</span>";
+            if (f === 'nao_faturar') return "<span class='badge off'>Não faturar</span>";
+            return "<span class='badge warn'>Não enviado</span>";
+        }
+
+        function set(id, html) { document.getElementById(id).innerHTML = html; }
+
+        (function init() {
+            var id = qs('id');
+            var atividade = qs('atividade');
+            var x = prods.find(function (p) { return p.id === id && p.atividade === atividade; }) || prods.find(function (p) { return p.id === id; });
+            if (!x) return;
+
+            set('d_id', x.id + " <span class='badge'>" + x.atividade + "</span>");
+            set('d_estado', x.estado);
+            set('d_fat', fatBadge(x.faturacao));
+            set('d_amb', x.ambiente);
+
+            set('d_cliente', x.cliente);
+            set('d_es', "<a class='badge' href='producao_es_editor.html?es=" + x.es + "'>" + x.es + "</a>");
+            set('d_versao', x.versao);
+            set('d_atividade', x.atividade);
+            set('d_servico', x.servico);
+            set('d_canal', x.canal);
+            set('d_sistema', x.sistema);
+            set('d_data', x.data);
+
+            set('d_origem', x.origem);
+            set('d_origemDet', x.origemDet);
+            set('d_qtd', fmtQty(x));
+            set('d_unidade', x.unidade);
+
+            var actions = document.getElementById('d_actions');
+            actions.innerHTML = '';
+            if (x.faturacao === 'nao') {
+                actions.innerHTML = "<button class='btn btn-primary' type='button'>Enviar p/ faturação</button><button class='btn btn-ghost' type='button'>Não faturar</button>";
+            } else if (x.faturacao === 'enviado') {
+                actions.innerHTML = "<button class='btn btn-disabled' type='button' disabled>Já enviado</button>";
+            } else {
+                actions.innerHTML = "<button class='btn btn-disabled' type='button' disabled>Não faturar</button>";
+            }
+        })();
+    </script>
+</body>
+
+</html>
