@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Produção - ES</title>
-   
+    <link rel='stylesheet' href='theme.css' />
+
 </head>
+
 <body>
     <div class="header">
         <div class="title">ContiU - Protótipo ES</div>
         <div class="user">Sessão: <strong>Utilizador AD (mock)</strong></div>
     </div>
-    
+
     <div class="app">
-        <aside class="sidebar">
-            <a href="#">Home</a>
-            <a href="#">Login</a>
-            <a href="#">ES - Pesquisa</a>
-            <a href="#" class="active">Produção - ES</a>
+        <aside class='sidebar'>
+            <a href='producao_list.html' class='active'>Produções</a>
+            <a href='producao_es_editor.html' class=''>Produção ES</a>
+            <a href='producao_es_pesquisa.html' class=''>ES Pesquisa</a>
         </aside>
-        
+
         <main class="content">
             <div class="breadcrumbs">Produção / ES / Editor</div>
 
             <div class="card">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap">
+                <div
+                    style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap">
                     <div>
                         <h2 style="margin:0">Definição de Especificações de Serviço</h2>
                         <div class="small">Editor ES (mock) - v18 (Grupos como Inserts: Adicionar + Remover).</div>
@@ -47,13 +50,21 @@
                     <div><label>Departamento</label><input type="text" value="EXT" readonly></div>
                     <div><label>Serviço</label><input type="text" value="EXTRACTOS SONAE FS" readonly></div>
                     <div><label>Tipo de Serviço</label>
-                        <select><option selected>Normal</option><option>Pack</option><option>Cartões</option><option>Visita</option><option>Desenv.</option></select>
+                        <select>
+                            <option selected>Normal</option>
+                            <option>Pack</option>
+                            <option>Cartões</option>
+                            <option>Visita</option>
+                            <option>Desenv.</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="note"><strong>DRP (Disaster Recovery Plan):</strong> define por serviço se está incluído em DRP, o <strong>preço em DRP</strong> e, se aplicável, <strong>papel/envelope em DRP</strong> diferentes.</div>
+                <div class="note"><strong>DRP (Disaster Recovery Plan):</strong> define por serviço se está incluído em
+                    DRP, o <strong>preço em DRP</strong> e, se aplicável, <strong>papel/envelope em DRP</strong>
+                    diferentes.</div>
             </div>
             <!-- TODO: TABSLIST - Card que contém todas as abas e painéis -->
             <div class="card">
@@ -96,12 +107,18 @@
                             <!-- TODO: CARACTERIZAÇÃO - Label do switch mostra Com/Sem Impressão -->
                             <label class="switch-label" for="chkImpressao" id="lblImpressao">Com Impressão</label>
                         </div>
-                        
+
                         <!-- TODO: CARACTERIZAÇÃO - Opções de impressão (Duplex/Simplex/Multilep) escondidas quando switch desligado — radio porque só 1 opção pode ser escolhida -->
-                        <div id="opcoes-impressao" style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
-                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="tipo-impressao" checked> Duplex</label>
-                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="tipo-impressao"> Simplex</label>
-                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="radio" name="tipo-impressao"> Multilep</label>
+                        <div id="opcoes-impressao"
+                            style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
+                            <label
+                                style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input
+                                    type="radio" name="tipo-impressao" checked> Duplex</label>
+                            <label
+                                style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input
+                                    type="radio" name="tipo-impressao"> Simplex</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input
+                                    type="radio" name="tipo-impressao"> Multilep</label>
                         </div>
                     </fieldset>
 
@@ -120,11 +137,15 @@
                             <!-- TODO: CARACTERIZAÇÃO - Label do switch mostra Com/Sem Envelopagem -->
                             <label class="switch-label" for="chkEnvelopagem" id="lblEnvelopagem">Com Envelopagem</label>
                         </div>
-                        
+
                         <!-- TODO: CARACTERIZAÇÃO - Opções de envelopagem (Automática/Manual) escondidas quando switch desligado -->
-                        <div id="opcoes-envelopagem" style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
-                            <label style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input type="radio" name="modo" checked> Automática</label>
-                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input type="radio" name="modo"> Manual</label>
+                        <div id="opcoes-envelopagem"
+                            style="margin-left: 20px; padding-left: 10px; border-left: 2px solid var(--brand); margin-top: 10px;">
+                            <label
+                                style="display:inline-flex; align-items:center; gap:6px; margin-right:12px; cursor:pointer;"><input
+                                    type="radio" name="modo" checked> Automática</label>
+                            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><input
+                                    type="radio" name="modo"> Manual</label>
                         </div>
                     </fieldset>
 
@@ -132,28 +153,46 @@
                     <fieldset>
                         <legend>Expedição</legend>
                         <!-- TODO: CARACTERIZAÇÃO - Nota explicativa sobre providers e contratos -->
-                        <div class="small" style="margin-bottom:8px;">Providers e contratos (por provider). Periodicidade/Hora/SLA estão em "Propriedades".</div>
+                        <div class="small" style="margin-bottom:8px;">Providers e contratos (por provider).
+                            Periodicidade/Hora/SLA estão em "Propriedades".</div>
                         <!-- TODO: CARACTERIZAÇÃO - Tabela de providers de expedição -->
                         <table class="table-compact">
                             <!-- TODO: CARACTERIZAÇÃO - Cabeçalho da tabela de providers -->
-                            <thead><tr><th style="width:140px">Provider</th><th>Contrato cliente</th><th>Contrato</th><th style="width:160px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:140px">Provider</th>
+                                    <th>Contrato cliente</th>
+                                    <th>Contrato</th>
+                                    <th style="width:160px"></th>
+                                </tr>
+                            </thead>
                             <!-- TODO: CARACTERIZAÇÃO - Corpo da tabela de providers -->
                             <tbody id="expedicaoProvidersBody">
                                 <!-- TODO: CARACTERIZAÇÃO - Linha de exemplo de provider de expedição -->
                                 <tr>
                                     <!-- TODO: CARACTERIZAÇÃO - Select de provider (CTT/PGM/Interno/Outro) -->
-                                    <td><select><option>CTT</option><option>PGM</option><option>Interno</option><option>Outro</option></select></td>
+                                    <td><select>
+                                            <option>CTT</option>
+                                            <option>PGM</option>
+                                            <option>Interno</option>
+                                            <option>Outro</option>
+                                        </select></td>
                                     <!-- TODO: CARACTERIZAÇÃO - Input Contrato cliente -->
                                     <td><input type="text" value="200058601"></td>
                                     <!-- TODO: CARACTERIZAÇÃO - Input Contrato -->
                                     <td><input type="text" placeholder="ex.: CONTRATO RP"></td>
                                     <!-- TODO: CARACTERIZAÇÃO - Botão Remover provider -->
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px;"><button
+                                                class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- TODO: CARACTERIZAÇÃO - Botão para adicionar novo provider de expedição -->
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addExpedicaoProvider()">+ Adicionar Provider</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button"
+                                onclick="addExpedicaoProvider()">+ Adicionar Provider</button></div>
                     </fieldset>
 
                     <!-- TODO: CARACTERIZAÇÃO - Fieldset Propriedades — grid 3 colunas (>1200px); ao 1024px: Periodicidade à esquerda, Hora+SLA à direita -->
@@ -167,16 +206,25 @@
                                 <label>Periodicidade</label>
                                 <!-- TODO: CARACTERIZAÇÃO - Radio buttons para periodicidade (Diário/Mensal/Semanal/Ocasional) -->
                                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
-                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade" checked> Diário</label>
-                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Mensal</label>
-                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Semanal</label>
-                                    <label style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input type="radio" name="periodicidade"> Ocasional</label>
+                                    <label
+                                        style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input
+                                            type="radio" name="periodicidade" checked> Diário</label>
+                                    <label
+                                        style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input
+                                            type="radio" name="periodicidade"> Mensal</label>
+                                    <label
+                                        style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input
+                                            type="radio" name="periodicidade"> Semanal</label>
+                                    <label
+                                        style="display:inline-flex; align-items:center; gap:6px; margin:0; cursor:pointer;"><input
+                                            type="radio" name="periodicidade"> Ocasional</label>
                                 </div>
                             </div>
                             <!-- TODO: CARACTERIZAÇÃO - Hora de corte -->
                             <div class="prop-hora"><label>Hora de corte</label><input type="time" value="14:00"></div>
                             <!-- TODO: CARACTERIZAÇÃO - SLA -->
-                            <div class="prop-sla"><label>SLA acordado (em dias)</label><input type="number" value="2"></div>
+                            <div class="prop-sla"><label>SLA acordado (em dias)</label><input type="number" value="2">
+                            </div>
                         </div>
                     </fieldset>
                 </div>
@@ -184,8 +232,9 @@
                 <!-- TODO: PAPEIS - Início da secção de Papéis -->
                 <div id="tab-papeis" class="tab-panel">
                     <!-- TODO: PAPEIS - Nota explicativa sobre campos de cada papel -->
-                    <div class="note" style="margin-bottom:12px;">Cada papel: Papel cliente (Sim/Não), FSC (Sim/Não), Papel com logo (Sim/Não), Ref Cliente, Ref Interna, Descrição.</div>
-                    
+                    <div class="note" style="margin-bottom:12px;">Cada papel: Papel cliente (Sim/Não), FSC (Sim/Não),
+                        Papel com logo (Sim/Não), Ref Cliente, Ref Interna, Descrição.</div>
+
                     <!-- TODO: PAPEIS - Card da tabela Papéis (Normal) -->
                     <div class="card" style="margin:0; margin-bottom:16px;">
                         <h4 style="margin-top:0">Papéis (Normal)</h4>
@@ -208,11 +257,26 @@
                                 <!-- TODO: PAPEIS - Linha de exemplo com switches checked (Sim = azul) -->
                                 <tr>
                                     <!-- TODO: PAPEIS - Switch Papel cliente com label Sim/Não -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Switch FSC com label Sim/Não -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Switch Papel com logo com label Sim/Não -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex. PAPEL BRANCO A4"></td>
                                     <!-- TODO: PAPEIS - Input Ref Interna -->
@@ -222,14 +286,16 @@
                                     <!-- TODO: PAPEIS - Botão Remover linha -->
                                     <td>
                                         <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
-                                            <button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button>
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- TODO: PAPEIS - Botão para adicionar nova linha de papel normal -->
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addPaperNormal()">+ Adicionar Papel</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button"
+                                onclick="addPaperNormal()">+ Adicionar Papel</button></div>
                     </div>
 
                     <!-- TODO: PAPEIS - Card da tabela Papéis (DRP) -->
@@ -238,17 +304,42 @@
                         <!-- TODO: PAPEIS - Tabela de papéis DRP com switches inline -->
                         <table class="table-compact">
                             <!-- TODO: PAPEIS - Cabeçalho da tabela DRP (mesmas colunas que Normal) -->
-                            <thead><tr><th style="width:70px">Papel cliente</th><th style="width:70px">FSC</th><th style="width:130px">Papel com logo</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th style="width:170px">Descrição</th><th style="width:20px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:70px">Papel cliente</th>
+                                    <th style="width:70px">FSC</th>
+                                    <th style="width:130px">Papel com logo</th>
+                                    <th style="width:160px">Ref Cliente</th>
+                                    <th style="width:160px">Ref Interna</th>
+                                    <th style="width:170px">Descrição</th>
+                                    <th style="width:20px"></th>
+                                </tr>
+                            </thead>
                             <!-- TODO: PAPEIS - Corpo da tabela DRP - switches unchecked (Não = cinzento) por defeito -->
                             <tbody id="papersDrpBody">
                                 <!-- TODO: PAPEIS - Linha de exemplo com switches unchecked (Não = cinzento) -->
                                 <tr>
                                     <!-- TODO: PAPEIS - Switch Papel cliente (unchecked = Não) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Switch FSC (unchecked = Não) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Switch Papel com logo (unchecked = Não) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: PAPEIS - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex. PAPEL BRANCO A4 (DRP)"></td>
                                     <!-- TODO: PAPEIS - Input Ref Interna -->
@@ -256,12 +347,17 @@
                                     <!-- TODO: PAPEIS - Input Descrição -->
                                     <td><input type="text" placeholder="ex. Papel A4 80g (DRP)"></td>
                                     <!-- TODO: PAPEIS - Botão Remover linha -->
-                                    <td><div style="display:flex; justify-content:flex-end; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; flex-wrap:wrap;"><button
+                                                class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <!-- TODO: PAPEIS - Botão para adicionar nova linha de papel DRP -->
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addPaperDRP()">+ Adicionar Papel DRP</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addPaperDRP()">+
+                                Adicionar Papel DRP</button></div>
                     </div>
                     <!-- TODO: PAPEIS - Fim da secção de Papéis -->
                 </div>
@@ -269,26 +365,60 @@
                 <!-- TODO: TABSLIST - Painel da aba Envelopes -->
                 <div id="tab-envelopes" class="tab-panel">
                     <!-- TODO: ENVELOPES - Nota explicativa sobre campos de cada envelope com switches inline -->
-                    <div class="note" style="margin-bottom:12px;">Cada envelope: Tipo (DL/C5/C4/ENCFSC), FSC (Sim/Não), Envelope com logo (Sim/Não), Tipo de envelopagem (Automática/Manual), Ref Cliente, Ref Interna, Descrição.</div>
-                    
+                    <div class="note" style="margin-bottom:12px;">Cada envelope: Tipo (DL/C5/C4/ENCFSC), FSC (Sim/Não),
+                        Envelope com logo (Sim/Não), Tipo de envelopagem (Automática/Manual), Ref Cliente, Ref Interna,
+                        Descrição.</div>
+
                     <!-- TODO: ENVELOPES - Card da tabela Envelopes (Normal) -->
                     <div class="card" style="margin:0; margin-bottom:16px;">
                         <h4 style="margin-top:0">Envelopes (Normal)</h4>
                         <!-- TODO: ENVELOPES - Tabela de envelopes normais com switches inline -->
                         <table class="table-compact">
                             <!-- TODO: ENVELOPES - Cabeçalho da tabela com larguras fixas para cada coluna -->
-                            <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:140px">Tipo de envelope</th>
+                                    <th style="width:70px">FSC</th>
+                                    <th style="width:150px">Envelope com logo</th>
+                                    <th style="width:170px">Tipo de envelopagem</th>
+                                    <th style="width:160px">Ref Cliente</th>
+                                    <th style="width:160px">Ref Interna</th>
+                                    <th>Descrição</th>
+                                    <th style="width:150px"></th>
+                                </tr>
+                            </thead>
                             <!-- TODO: ENVELOPES - Corpo da tabela Normal - cada linha tem select tipo + 3 switches + 3 inputs + botão Remover -->
                             <tbody id="envNormalBody">
                                 <tr>
                                     <!-- TODO: ENVELOPES - Select mantém-se para Tipo de envelope (DL/C5/C4/ENCFSC) -->
-                                    <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
+                                    <td><select>
+                                            <option selected>DL</option>
+                                            <option>C5</option>
+                                            <option>C4</option>
+                                            <option>ENCFSC</option>
+                                        </select></td>
                                     <!-- TODO: ENVELOPES - Switch inline FSC (Não por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Switch inline Envelope com logo (Não por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Switch inline Tipo de envelopagem (Automática quando checked por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleEnvelopagemLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Automática</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" checked
+                                                    onchange="toggleEnvelopagemLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Automática</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex.: DL 2 JANELAS"></td>
                                     <!-- TODO: ENVELOPES - Input Ref Interna -->
@@ -296,11 +426,16 @@
                                     <!-- TODO: ENVELOPES - Input Descrição -->
                                     <td><input type="text" placeholder="ex.: Envelope DL 2 janelas"></td>
                                     <!-- TODO: ENVELOPES - Botão Remover (sem Editar) -->
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addEnvelope('envNormalBody')">+ Adicionar Envelope</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button"
+                                onclick="addEnvelope('envNormalBody')">+ Adicionar Envelope</button></div>
                     </div>
 
                     <!-- TODO: ENVELOPES - Card da tabela Envelopes (DRP) -->
@@ -309,18 +444,50 @@
                         <!-- TODO: ENVELOPES - Tabela de envelopes DRP com switches inline -->
                         <table class="table-compact">
                             <!-- TODO: ENVELOPES - Cabeçalho da tabela DRP (mesmas colunas que Normal) -->
-                            <thead><tr><th style="width:140px">Tipo de envelope</th><th style="width:70px">FSC</th><th style="width:150px">Envelope com logo</th><th style="width:170px">Tipo de envelopagem</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:150px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:140px">Tipo de envelope</th>
+                                    <th style="width:70px">FSC</th>
+                                    <th style="width:150px">Envelope com logo</th>
+                                    <th style="width:170px">Tipo de envelopagem</th>
+                                    <th style="width:160px">Ref Cliente</th>
+                                    <th style="width:160px">Ref Interna</th>
+                                    <th>Descrição</th>
+                                    <th style="width:150px"></th>
+                                </tr>
+                            </thead>
                             <!-- TODO: ENVELOPES - Corpo da tabela DRP - switches unchecked (Não = cinzento) por defeito -->
                             <tbody id="envDrpBody">
                                 <tr>
                                     <!-- TODO: ENVELOPES - Select mantém-se para Tipo de envelope (DL/C5/C4/ENCFSC) -->
-                                    <td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>
+                                    <td><select>
+                                            <option selected>DL</option>
+                                            <option>C5</option>
+                                            <option>C4</option>
+                                            <option>ENCFSC</option>
+                                        </select></td>
                                     <!-- TODO: ENVELOPES - Switch inline FSC (Não por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Switch inline Envelope com logo (Não por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Switch inline Tipo de envelopagem (Automática quando checked por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" checked onchange="toggleEnvelopagemLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Automática</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" checked
+                                                    onchange="toggleEnvelopagemLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Automática</span></div>
+                                    </td>
                                     <!-- TODO: ENVELOPES - Input Ref Cliente (DRP) -->
                                     <td><input type="text" placeholder="ex.: DL 2 JANELAS (DRP)"></td>
                                     <!-- TODO: ENVELOPES - Input Ref Interna (DRP) -->
@@ -328,30 +495,50 @@
                                     <!-- TODO: ENVELOPES - Input Descrição (DRP) -->
                                     <td><input type="text" placeholder="ex.: Envelope DL 2 janelas (DRP)"></td>
                                     <!-- TODO: ENVELOPES - Botão Remover (sem Editar) -->
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addEnvelope('envDrpBody')">+ Adicionar Envelope DRP</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button"
+                                onclick="addEnvelope('envDrpBody')">+ Adicionar Envelope DRP</button></div>
                     </div>
                 </div>
 
                 <!-- TODO: TABSLIST - Painel da aba Inserts -->
                 <div id="tab-inserts" class="tab-panel">
                     <!-- TODO: INSERTS - Nota explicativa sobre campos de cada insert com switch inline -->
-                    <div class="note" style="margin-bottom:12px;">Cada insert inclui: Peça cliente (Sim/Não), Ref Cliente, Ref Interna, Descrição e Peso (g).</div>
+                    <div class="note" style="margin-bottom:12px;">Cada insert inclui: Peça cliente (Sim/Não), Ref
+                        Cliente, Ref Interna, Descrição e Peso (g).</div>
                     <!-- TODO: INSERTS - Card da tabela Inserts -->
                     <div class="card" style="margin:0">
                         <h4 style="margin-top:0">Inserts</h4>
                         <!-- TODO: INSERTS - Tabela de inserts com switch inline -->
                         <table class="table-compact">
                             <!-- TODO: INSERTS - Cabeçalho da tabela com larguras fixas para cada coluna -->
-                            <thead><tr><th style="width:120px">Peça cliente</th><th style="width:160px">Ref Cliente</th><th style="width:160px">Ref Interna</th><th>Descrição</th><th style="width:110px">Peso (g)</th><th style="width:150px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:120px">Peça cliente</th>
+                                    <th style="width:160px">Ref Cliente</th>
+                                    <th style="width:160px">Ref Interna</th>
+                                    <th>Descrição</th>
+                                    <th style="width:110px">Peso (g)</th>
+                                    <th style="width:150px"></th>
+                                </tr>
+                            </thead>
                             <!-- TODO: INSERTS - Corpo da tabela - cada linha tem switch + 4 inputs + botão Remover -->
                             <tbody id="insertsBody">
                                 <tr>
                                     <!-- TODO: INSERTS - Switch inline Peça cliente (Não por defeito) -->
-                                    <td><div class="switch-inline-container"><label class="switch-inline"><input type="checkbox" onchange="toggleSwitchLabel(this)"><span class="slider"></span></label><span class="switch-inline-label">Não</span></div></td>
+                                    <td>
+                                        <div class="switch-inline-container"><label class="switch-inline"><input
+                                                    type="checkbox" onchange="toggleSwitchLabel(this)"><span
+                                                    class="slider"></span></label><span
+                                                class="switch-inline-label">Não</span></div>
+                                    </td>
                                     <!-- TODO: INSERTS - Input Ref Cliente -->
                                     <td><input type="text" placeholder="ex.: INS-001"></td>
                                     <!-- TODO: INSERTS - Input Ref Interna -->
@@ -361,11 +548,16 @@
                                     <!-- TODO: INSERTS - Input Peso em gramas -->
                                     <td><input type="number" value="5" min="0" step="1"></td>
                                     <!-- TODO: INSERTS - Botão Remover (sem Editar) -->
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addInsert()">+ Adicionar Insert</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addInsert()">+
+                                Adicionar Insert</button></div>
                     </div>
                 </div>
 
@@ -375,7 +567,7 @@
                     <div class="note" style="margin-bottom:12px;">
                         Selecione um serviço na dropdown abaixo para adicionar e configurar.
                     </div>
-                    
+
                     <!-- TODO: SERVIÇOS DIGITAIS - Card com tabela de serviços digitais no estilo da aplicação -->
                     <div class="card" style="margin:0">
                         <!-- TODO: SERVIÇOS DIGITAIS - Título da secção -->
@@ -384,29 +576,35 @@
                         <div class="actions-row" style="margin-bottom:12px;">
                             <!-- TODO: SERVIÇOS DIGITAIS - Select com lista de serviços disponíveis -->
                             <select id="selectServicoDigital" style="max-width:300px;">
-                                <option value="">-- Escolha um serviço --</option>
+                                <option value="">Escolha um serviço</option>
                                 <option value="email">Email</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Email -->
                                 <option value="sms">SMS</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção SMS -->
-                                <option value="emailsreg">Emails Registados</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Emails Registados -->
-                                <option value="assinaturas">Assinaturas de Contratos</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinaturas -->
-                                <option value="devolucao">Devolução PDFs</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Devolução PDFs -->
-                                <option value="pdfonthefly">PDFonTheFly</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção PDFonTheFly -->
-                                <option value="assdigital">Assinatura Digital Qualificada</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinatura Digital -->
+                                <option value="emailsreg">Emails Registados</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção Emails Registados -->
+                                <option value="assinaturas">Assinaturas de Contratos</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinaturas -->
+                                <option value="devolucao">Devolução PDFs</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção Devolução PDFs -->
+                                <option value="pdfonthefly">PDFonTheFly</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção PDFonTheFly -->
+                                <option value="assdigital">Assinatura Digital Qualificada</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção Assinatura Digital -->
                                 <option value="edi">EDI</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção EDI -->
-                                <option value="certificacao">Certificação de Contactos</option> <!-- TODO: SERVIÇOS DIGITAIS - Opção Certificação -->
+                                <option value="certificacao">Certificação de Contactos</option>
+                                <!-- TODO: SERVIÇOS DIGITAIS - Opção Certificação -->
                             </select>
                             <!-- TODO: SERVIÇOS DIGITAIS - Botão para adicionar serviço selecionado -->
-                            <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+ Adicionar Serviço</button>
+                            <button class="btn btn-primary" type="button" onclick="adicionarServicoDigital()">+
+                                Adicionar Serviço</button>
                             <!-- TODO: SERVIÇOS DIGITAIS - Botão para remover último serviço adicionado -->
-                            <button class="btn btn-danger" type="button" onclick="removerUltimoServico()">Remover</button>
+                            <button class="btn btn-danger" type="button"
+                                onclick="removerUltimoServico()">Remover</button>
                         </div>
                         <!-- TODO: SERVIÇOS DIGITAIS - Tabela compacta que contém os serviços adicionados -->
                         <table class="table-compact">
-                            <tbody>
-                                <!-- TODO: SERVIÇOS DIGITAIS - Linha única onde serviços são adicionados como células lado a lado -->
-                                <tr id="servicosDigitaisRow">
-                                    <!-- TODO: SERVIÇOS DIGITAIS - Serviços serão adicionados aqui como células (td) dinamicamente -->
-                                </tr>
+                            <!-- TODO: SERVIÇOS DIGITAIS - Tbody onde serviços são adicionados como linhas verticais -->
+                            <tbody id="servicosDigitaisRow">
+                                <!-- TODO: SERVIÇOS DIGITAIS - Serviços serão adicionados aqui como linhas (tr) dinamicamente -->
                             </tbody>
                         </table>
                     </div>
@@ -414,7 +612,9 @@
 
                 <!-- TODO: TABSLIST - Painel da aba Serviços & Preços -->
                 <div id="tab-servicos" class="tab-panel">
-                    <div class="note" style="margin-bottom:12px;">Campos editáveis: Venda (Normal/DRP) e Custo (Normal/DRP). Margens (Normal e DRP) calculadas automaticamente. (Sem fieldset "Outros Serviços").</div>
+                    <div class="note" style="margin-bottom:12px;">Campos editáveis: Venda (Normal/DRP) e Custo
+                        (Normal/DRP). Margens (Normal e DRP) calculadas automaticamente. (Sem fieldset "Outros
+                        Serviços").</div>
                     <div class="card" style="margin:0">
                         <fieldset>
                             <legend>Serviços & Preços por Milheiro</legend>
@@ -437,18 +637,35 @@
                                     <tr>
                                         <td><input type="text" value="EML"></td>
                                         <td><input type="text" value="Envio Email"></td>
-                                        <td><select><option selected>Email</option><option>SMS</option><option>Devolução PDFs</option><option>Assinatura digital qualificada</option><option>EDI</option><option>Certificação de contactos</option></select></td>
-                                        <td class="num"><input type="number" class="venda-normal" value="16.37" step="0.01" oninput="recalcMargins()"></td>
-                                        <td class="num"><input type="number" class="custo-normal" value="10.00" step="0.01" oninput="recalcMargins()"></td>
+                                        <td><select>
+                                                <option selected>Email</option>
+                                                <option>SMS</option>
+                                                <option>Devolução PDFs</option>
+                                                <option>Assinatura digital qualificada</option>
+                                                <option>EDI</option>
+                                                <option>Certificação de contactos</option>
+                                            </select></td>
+                                        <td class="num"><input type="number" class="venda-normal" value="16.37"
+                                                step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num"><input type="number" class="custo-normal" value="10.00"
+                                                step="0.01" oninput="recalcMargins()"></td>
                                         <td class="num kpi"><span class="margem-normal">-</span></td>
-                                        <td class="num"><input type="number" class="venda-drp" value="0.00" step="0.01" oninput="recalcMargins()"></td>
-                                        <td class="num"><input type="number" class="custo-drp" value="0.00" step="0.01" oninput="recalcMargins()"></td>
+                                        <td class="num"><input type="number" class="venda-drp" value="0.00" step="0.01"
+                                                oninput="recalcMargins()"></td>
+                                        <td class="num"><input type="number" class="custo-drp" value="0.00" step="0.01"
+                                                oninput="recalcMargins()"></td>
                                         <td class="num kpi"><span class="margem-drp">-</span></td>
-                                        <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                        <td>
+                                            <div
+                                                style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                                <button class="btn btn-danger" type="button"
+                                                    onclick="removeRow(this)">Remover</button></div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addService()">+ Novo Serviço</button></div>
+                            <div class="actions-row"><button class="btn btn-primary" type="button"
+                                    onclick="addService()">+ Novo Serviço</button></div>
                         </fieldset>
                     </div>
                 </div>
@@ -479,59 +696,80 @@
                 <!-- TODO: TABSLIST - Painel da aba Observações -->
                 <div id="tab-observacoes" class="tab-panel">
                     <div class="grid">
-                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações Gerais</h4><textarea></textarea></div>
-                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações para Produção</h4><textarea></textarea></div>
-                        <div class="card" style="margin:0"><h4 style="margin-top:0">Observações para Expedição</h4><textarea></textarea></div>
-                        <div class="card" style="margin:0"><h4 style="margin-top:0">Motivo da Alteração</h4><textarea></textarea></div>
+                        <div class="card" style="margin:0">
+                            <h4 style="margin-top:0">Observações Gerais</h4><textarea></textarea>
+                        </div>
+                        <div class="card" style="margin:0">
+                            <h4 style="margin-top:0">Observações para Produção</h4><textarea></textarea>
+                        </div>
+                        <div class="card" style="margin:0">
+                            <h4 style="margin-top:0">Observações para Expedição</h4><textarea></textarea>
+                        </div>
+                        <div class="card" style="margin:0">
+                            <h4 style="margin-top:0">Motivo da Alteração</h4><textarea></textarea>
+                        </div>
                     </div>
                 </div>
 
                 <!-- TODO: TABSLIST - Painel da aba Grupos de Faturação -->
                 <div id="tab-grupos" class="tab-panel">
-                    <div class="note" style="margin-bottom:12px;">Funciona como os Inserts: podes <strong>adicionar</strong> linhas e <strong>remover</strong> da lista.</div>
+                    <div class="note" style="margin-bottom:12px;">Funciona como os Inserts: podes
+                        <strong>adicionar</strong> linhas e <strong>remover</strong> da lista.</div>
                     <div class="card" style="margin:0">
                         <h4 style="margin-top:0">Grupos de Faturação</h4>
                         <table class="table-compact">
-                            <thead><tr><th style="width:140px">Código</th><th>Descrição</th><th style="width:160px"></th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th style="width:140px">Código</th>
+                                    <th>Descrição</th>
+                                    <th style="width:160px"></th>
+                                </tr>
+                            </thead>
                             <tbody id="gruposBody">
                                 <tr>
                                     <td><input type="text" value="EXT"></td>
                                     <td><input type="text" value="EXTRACTOS SONAE FS"></td>
-                                    <td><div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;"><button class="btn btn-danger" type="button" onclick="removeRow(this)">Remover</button></div></td>
+                                    <td>
+                                        <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+                                            <button class="btn btn-danger" type="button"
+                                                onclick="removeRow(this)">Remover</button></div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addGrupo()">+ Adicionar Grupo</button></div>
+                        <div class="actions-row"><button class="btn btn-primary" type="button" onclick="addGrupo()">+
+                                Adicionar Grupo</button></div>
                     </div>
                 </div>
 
-            </div> </main>
+            </div>
+        </main>
     </div>
 
     <script>
         // ---------------------------------------------------------
         // TODO: TABSLIST - LÓGICA DE NAVEGAÇÃO DAS ABAS
         // ---------------------------------------------------------
-        
+
         // TODO: TABSLIST - Função que activa uma aba específica pelo ID
         function activateTab(tabId) {
             // TODO: TABSLIST - Remove classe active de todas as abas
             document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
             // TODO: TABSLIST - Remove classe active de todos os painéis
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            
+
             // TODO: TABSLIST - Encontra o botão e painel correspondentes ao tabId
             var btn = document.querySelector('.tab[data-tab="' + tabId + '"]');
             var panel = document.getElementById(tabId);
-            
+
             // TODO: TABSLIST - Adiciona classe active ao botão e painel seleccionados
-            if(btn) btn.classList.add('active');
-            if(panel) panel.classList.add('active');
+            if (btn) btn.classList.add('active');
+            if (panel) panel.classList.add('active');
         }
 
         // TODO: TABSLIST - Event listeners para todos os botões de aba
         document.querySelectorAll('.tab').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 activateTab(this.getAttribute('data-tab'));
             });
         });
@@ -571,64 +809,64 @@
         // ---------------------------------------------------------
 
         // TODO: Remove a linha da tabela onde o botão Remover foi clicado e recalcula margens
-        function removeRow(btn){
-            try { 
-                var tr = btn.closest('tr'); 
-                if(tr) tr.remove(); 
-                recalcMargins(); 
-            } catch(e) {}
+        function removeRow(btn) {
+            try {
+                var tr = btn.closest('tr');
+                if (tr) tr.remove();
+                recalcMargins();
+            } catch (e) { }
         }
 
         // TODO: Adiciona uma nova linha ao tbody de Grupos de Faturação
-        function addGrupo(){
+        function addGrupo() {
             var tbody = document.getElementById('gruposBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             tr.innerHTML = "<td><input type='text' value='NEW'></td>" +
-                           "<td><input type='text' value='Novo grupo'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><input type='text' value='Novo grupo'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
         // TODO: CARACTERIZAÇÃO - Adiciona uma nova linha de provider à tabela de Expedição
-        function addExpedicaoProvider(){
+        function addExpedicaoProvider() {
             var tbody = document.getElementById('expedicaoProvidersBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             tr.innerHTML = "<td><select><option>CTT</option><option>PGM</option><option>Interno</option><option>Outro</option></select></td>" +
-                           "<td><input type='text' placeholder='ex.: 200058601'></td>" +
-                           "<td><input type='text' placeholder='ex.: CONTRATO RP'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><input type='text' placeholder='ex.: 200058601'></td>" +
+                "<td><input type='text' placeholder='ex.: CONTRATO RP'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
         // TODO: PAPEIS - Adiciona nova linha de papel à tabela Normal (papersNormalBody) com switches + labels Sim/Não
-        function addPaperNormal(){
+        function addPaperNormal() {
             var tbody = document.getElementById('papersNormalBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><input type='text' placeholder='ex. PAPEL BRANCO A4'></td>" +
-                           "<td><input type='text' placeholder='ex. PFT000A4000007'></td>" +
-                           "<td><input type='text' placeholder='ex. Papel A4 80g'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><input type='text' placeholder='ex. PAPEL BRANCO A4'></td>" +
+                "<td><input type='text' placeholder='ex. PFT000A4000007'></td>" +
+                "<td><input type='text' placeholder='ex. Papel A4 80g'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
         // TODO: PAPEIS - Adiciona nova linha de papel à tabela DRP (papersDrpBody) com switches + labels Sim/Não
-        function addPaperDRP(){
+        function addPaperDRP() {
             var tbody = document.getElementById('papersDrpBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><input type='text' placeholder='ex. PAPEL BRANCO A4 (DRP)'></td>" +
-                           "<td><input type='text' placeholder='ex. PFT000A4000007_DRP'></td>" +
-                           "<td><input type='text' placeholder='ex. Papel A4 80g (DRP)'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><input type='text' placeholder='ex. PAPEL BRANCO A4 (DRP)'></td>" +
+                "<td><input type='text' placeholder='ex. PFT000A4000007_DRP'></td>" +
+                "<td><input type='text' placeholder='ex. Papel A4 80g (DRP)'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end;flex-wrap:nowrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
@@ -649,137 +887,181 @@
         }
 
         // TODO: ENVELOPES - Adiciona nova linha de envelope ao tbody indicado (Normal ou DRP) com switches inline
-        function addEnvelope(tbodyId){
+        function addEnvelope(tbodyId) {
             var tbody = document.getElementById(tbodyId);
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             // TODO: ENVELOPES - Select tipo envelope mantém-se + 3 switches inline (FSC, Envelope com logo, Tipo envelopagem) + 3 inputs + apenas botão Remover
             tr.innerHTML = "<td><select><option selected>DL</option><option>C5</option><option>C4</option><option>ENCFSC</option></select></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' checked onchange='toggleEnvelopagemLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Automática</span></div></td>" +
-                           "<td><input type='text' placeholder='Ref Cliente'></td>" +
-                           "<td><input type='text' placeholder='Ref Interna'></td>" +
-                           "<td><input type='text' placeholder='Descrição'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
+                "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' checked onchange='toggleEnvelopagemLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Automática</span></div></td>" +
+                "<td><input type='text' placeholder='Ref Cliente'></td>" +
+                "<td><input type='text' placeholder='Ref Interna'></td>" +
+                "<td><input type='text' placeholder='Descrição'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
         // TODO: INSERTS - Adiciona nova linha de insert ao tbody de Inserts com switch inline
-        function addInsert(){
+        function addInsert() {
             var tbody = document.getElementById('insertsBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             // TODO: INSERTS - Switch inline Peça cliente + 4 inputs + apenas botão Remover (sem Editar)
             tr.innerHTML = "<td><div class='switch-inline-container'><label class='switch-inline'><input type='checkbox' onchange='toggleSwitchLabel(this)'><span class='slider'></span></label><span class='switch-inline-label'>Não</span></div></td>" +
-                           "<td><input type='text' placeholder='ex.: INS-001'></td>" +
-                           "<td><input type='text' placeholder='ex.: MLL00XXX000123'></td>" +
-                           "<td><input type='text' placeholder='ex.: Descrição'></td>" +
-                           "<td><input type='number' value='0' min='0' step='1'></td>" +
-                           "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+                "<td><input type='text' placeholder='ex.: INS-001'></td>" +
+                "<td><input type='text' placeholder='ex.: MLL00XXX000123'></td>" +
+                "<td><input type='text' placeholder='ex.: Descrição'></td>" +
+                "<td><input type='number' value='0' min='0' step='1'></td>" +
+                "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
             tbody.appendChild(tr);
         }
 
-        // TODO: SERVIÇOS DIGITAIS - Adiciona serviço como célula na tabela
+        // TODO: SERVIÇOS DIGITAIS - Adiciona serviço como linha na tabela
         function adicionarServicoDigital() {
             // TODO: SERVIÇOS DIGITAIS - Obtém elemento select da dropdown
             var select = document.getElementById('selectServicoDigital');
             // TODO: SERVIÇOS DIGITAIS - Obtém ID do serviço selecionado
             var servicoId = select.value;
-            
+
             // TODO: SERVIÇOS DIGITAIS - Valida se algum serviço foi selecionado
             if (!servicoId) {
                 alert('Por favor, selecione um serviço!');
                 return;
             }
-            
-            // TODO: SERVIÇOS DIGITAIS - Obtém linha da tabela onde serviços são adicionados
-            var row = document.getElementById('servicosDigitaisRow');
-            
+
+            // TODO: SERVIÇOS DIGITAIS - Obtém tbody da tabela onde serviços são adicionados
+            var tbody = document.getElementById('servicosDigitaisRow');
+
             // TODO: SERVIÇOS DIGITAIS - Verifica se o serviço já foi adicionado (previne duplicados)
-            var servicoExistente = row.querySelector('[data-servico-id="' + servicoId + '"]');
+            var servicoExistente = tbody.querySelector('[data-servico-id="' + servicoId + '"]');
             if (servicoExistente) {
                 alert('Este serviço já se encontra ativo!');
                 return;
             }
-            
-            // TODO: SERVIÇOS DIGITAIS - Cria nova célula (td) para o serviço
-            var td = document.createElement('td');
+
+            // TODO: SERVIÇOS DIGITAIS - Cria nova linha (tr) para o serviço
+            var tr = document.createElement('tr');
             // TODO: SERVIÇOS DIGITAIS - Define atributo data-servico-id para identificação
-            td.setAttribute('data-servico-id', servicoId);
-            // TODO: SERVIÇOS DIGITAIS - Define estilos CSS da célula (larguras e padding)
-            td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:150px; max-width:200px;';
+            tr.setAttribute('data-servico-id', servicoId);
+            // TODO: SERVIÇOS DIGITAIS - Remove borda da linha da tabela
+            tr.style.cssText = 'border:none;';
             
+            // TODO: SERVIÇOS DIGITAIS - Cria célula (td) que contém o conteúdo do serviço
+            var td = document.createElement('td');
+            // TODO: SERVIÇOS DIGITAIS - Define estilos CSS da célula
+            td.style.cssText = 'vertical-align:top; padding:4px 6px; border:none;';
+
             // TODO: SERVIÇOS DIGITAIS - Define conteúdo conforme o serviço escolhido
-            switch(servicoId) {
+            var fieldsetContent = '';
+            switch (servicoId) {
                 case 'email': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Email
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Email</strong>' +
-                    '<div style="display: flex; flex-direction:column; gap: 0.5rem;">'+
-                    '<input type="text" placeholder="From email" style="margin-bottom:4px;width:100%;font-size:12px;">' +
-                    '<input type="text" placeholder="From name" style="width:100%;font-size:12px;"> </div>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Email</legend>' +
+                        '<div><label>From email</label><input type="text" placeholder="exemplo@email.com" style="max-width:50%"></div>' +
+                        '<div><label>From name</label><input type="text" placeholder="Nome do remetente" style="max-width:50%"></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'sms': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço SMS
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">SMS</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outro</option></select>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>SMS</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Vodafone</option><option>NOS</option><option>Meo</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'emailsreg': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Emails Registados
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Emails Registados</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Emails Registados</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'assinaturas': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Assinaturas de Contratos
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Assinaturas de Contratos</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>Mailcooms</option><option>Outro</option></select>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Assinaturas</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Mailcooms</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'devolucao': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Devolução de PDFs
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Devolução de PDFs</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>FTP</option><option>SFTP</option><option>Email</option></select>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Devolução PDFs</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>FTP</option><option>SFTP</option><option>Email</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'pdfonthefly': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço PDFonTheFly (apenas status ativo)
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">PDFonTheFly</strong>' +
-                        '<div style="display:flex;align-items:center;gap:4px;"><span style="color:#28a745;font-size:16px;font-weight:bold;">✓</span><span style="font-size:12px;">ativo</span></div>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>PDFonTheFly</legend>' +
+                        '<div style="padding:10px 0;"><label style="font-weight:500;color:#28a745;">&#10003; Ativado</label></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
-                case 'assdigital': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Assinatura Digital Qualificada (célula maior)
-                    td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:180px; max-width:220px;';
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Assinatura Digital Qualificada</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>DigitalSign</option><option>Outro</option></select>';
+
+                case 'assdigital': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Assinatura Digital Qualificada
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Ass. Digital</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>DigitalSign</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
+
                 case 'edi': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço EDI
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">EDI</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>Cegid</option><option>Outro</option></select>';
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>EDI</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Cegid</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
-                    
-                case 'certificacao': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Certificação de Contactos (célula maior)
-                    td.style.cssText = 'vertical-align:top; padding:6px 8px; min-width:170px; max-width:210px;';
-                    td.innerHTML = '<strong style="display:block;margin-bottom:4px;font-size:12px;white-space:nowrap;">Certificação de Contactos</strong>' +
-                        '<select style="width:100%;font-size:12px;"><option>Email</option><option>Email + SMS</option><option>SMS</option><option>Carta</option></select>';
+
+                case 'certificacao': // TODO: SERVIÇOS DIGITAIS - Configuração do serviço Certificação de Contactos
+                    fieldsetContent = '<fieldset>' +
+                        '<legend>Certificação</legend>' +
+                        '<div><label>Provider</label><select style="max-width:50%"><option>Email</option><option>Email+SMS</option><option>SMS</option><option>Carta</option><option>Outros</option></select></div>' +
+                        '<div class="actions-row"><button type="button" onclick="removerServico(this)" class="btn btn-danger">Remover</button></div>' +
+                        '</fieldset>';
                     break;
             }
             
-            // TODO: SERVIÇOS DIGITAIS - Adiciona célula (td) criada à linha da tabela
-            row.appendChild(td);
-            
+            td.innerHTML = fieldsetContent;
+
+            // TODO: SERVIÇOS DIGITAIS - Adiciona célula (td) à linha (tr)
+            tr.appendChild(td);
+            // TODO: SERVIÇOS DIGITAIS - Adiciona linha (tr) ao tbody da tabela
+            tbody.appendChild(tr);
+
             // TODO: SERVIÇOS DIGITAIS - Faz reset da dropdown para estado inicial (-- Escolha um serviço --)
             select.value = '';
         }
-        
+
+        // TODO: SERVIÇOS DIGITAIS - Remove um serviço específico
+        function removerServico(botao) {
+            // TODO: SERVIÇOS DIGITAIS - Encontra a linha (tr) que contém o botão clicado
+            var tr = botao.closest('tr');
+            if (tr) {
+                // TODO: SERVIÇOS DIGITAIS - Remove a linha completa
+                tr.parentNode.removeChild(tr);
+            }
+        }
+
         // TODO: SERVIÇOS DIGITAIS - Remove o último serviço adicionado
         function removerUltimoServico() {
-            // TODO: SERVIÇOS DIGITAIS - Obtém linha da tabela de serviços
-            var row = document.getElementById('servicosDigitaisRow');
-            // TODO: SERVIÇOS DIGITAIS - Obtém última célula (último serviço adicionado)
-            var ultimaCelula = row.lastElementChild;
-            
-            // TODO: SERVIÇOS DIGITAIS - Verifica se existe alguma célula para remover
-            if (ultimaCelula) {
-                // TODO: SERVIÇOS DIGITAIS - Remove última célula da linha
-                row.removeChild(ultimaCelula);
+            // TODO: SERVIÇOS DIGITAIS - Obtém tbody da tabela de serviços
+            var tbody = document.getElementById('servicosDigitaisRow');
+            // TODO: SERVIÇOS DIGITAIS - Obtém última linha (último serviço adicionado)
+            var ultimaLinha = tbody.lastElementChild;
+
+            // TODO: SERVIÇOS DIGITAIS - Verifica se existe alguma linha para remover
+            if (ultimaLinha) {
+                // TODO: SERVIÇOS DIGITAIS - Remove última linha do tbody
+                tbody.removeChild(ultimaLinha);
             } else {
                 // TODO: SERVIÇOS DIGITAIS - Avisa que não há serviços para remover
                 alert('Não há serviços para remover!');
@@ -787,62 +1069,62 @@
         }
 
         // TODO: Converte string para número float (garante vírgula → ponto)
-        function toNum(v){
-            var n = parseFloat(String(v||'').replace(',', '.'));
+        function toNum(v) {
+            var n = parseFloat(String(v || '').replace(',', '.'));
             return isNaN(n) ? 0 : n;
         }
 
         // TODO: Formata número como percentagem com 2 casas decimais
-        function fmtPct(p){
-            if(!isFinite(p)) return '-';
-            return (Math.round(p*100)/100).toFixed(2) + '%';
+        function fmtPct(p) {
+            if (!isFinite(p)) return '-';
+            return (Math.round(p * 100) / 100).toFixed(2) + '%';
         }
 
         // TODO: Calcula margem percentual: (venda - custo) / venda × 100
-        function calcMarginPct(venda, custo){
+        function calcMarginPct(venda, custo) {
             venda = toNum(venda); custo = toNum(custo);
-            if(venda <= 0) return null;
+            if (venda <= 0) return null;
             return ((venda - custo) / venda) * 100;
         }
 
         // TODO: Percorre todas as linhas da tabela de Serviços e actualiza as colunas de margem
-        function recalcMargins(){
+        function recalcMargins() {
             var tbody = document.getElementById('tblServicosBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var rows = tbody.querySelectorAll('tr');
-            rows.forEach(function(r){
+            rows.forEach(function (r) {
                 var vn = r.querySelector('.venda-normal');
                 var cn = r.querySelector('.custo-normal');
                 var vd = r.querySelector('.venda-drp');
                 var cd = r.querySelector('.custo-drp');
                 var mn = r.querySelector('.margem-normal');
                 var md = r.querySelector('.margem-drp');
-                
+
                 var mnp = calcMarginPct(vn && vn.value, cn && cn.value);
                 var mdp = calcMarginPct(vd && vd.value, cd && cd.value);
-                
-                if(mn) mn.textContent = (mnp === null) ? '-' : fmtPct(mnp);
-                if(md) md.textContent = (mdp === null) ? '-' : fmtPct(mdp);
+
+                if (mn) mn.textContent = (mnp === null) ? '-' : fmtPct(mnp);
+                if (md) md.textContent = (mdp === null) ? '-' : fmtPct(mdp);
             });
         }
 
         // TODO: Adiciona nova linha de serviço à tabela Serviços & Preços e recalcula margens
-        function addService(){
+        function addService() {
             var tbody = document.getElementById('tblServicosBody');
-            if(!tbody) return;
+            if (!tbody) return;
             var tr = document.createElement('tr');
             tr.innerHTML = "" +
-            "<td><input type='text' value='NEW'></td>" +
-            "<td><input type='text' value='Novo Serviço'></td>" +
-            "<td><select><option>Email</option><option>SMS</option><option>Devolução PDFs</option><option>Assinatura digital qualificada</option><option>EDI</option><option>Certificação de contactos</option></select></td>" +
-            "<td class='num'><input type='number' class='venda-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
-            "<td class='num'><input type='number' class='custo-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
-            "<td class='num kpi'><span class='margem-normal'>-</span></td>" +
-            "<td class='num'><input type='number' class='venda-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
-            "<td class='num'><input type='number' class='custo-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
-            "<td class='num kpi'><span class='margem-drp'>-</span></td>" +
-            "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
-            
+                "<td><input type='text' value='NEW'></td>" +
+                "<td><input type='text' value='Novo Serviço'></td>" +
+                "<td><select><option>Email</option><option>SMS</option><option>Devolução PDFs</option><option>Assinatura digital qualificada</option><option>EDI</option><option>Certificação de contactos</option></select></td>" +
+                "<td class='num'><input type='number' class='venda-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+                "<td class='num'><input type='number' class='custo-normal' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+                "<td class='num kpi'><span class='margem-normal'>-</span></td>" +
+                "<td class='num'><input type='number' class='venda-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+                "<td class='num'><input type='number' class='custo-drp' value='0.00' step='0.01' oninput='recalcMargins()'></td>" +
+                "<td class='num kpi'><span class='margem-drp'>-</span></td>" +
+                "<td><div style='display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;'><button class='btn btn-danger' type='button' onclick='removeRow(this)'>Remover</button></div></td>";
+
             tbody.appendChild(tr);
             recalcMargins();
         }
@@ -854,5 +1136,5 @@
 
     </script>
 </body>
-</html>
 
+</html>
